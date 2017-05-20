@@ -32,8 +32,7 @@
 
     		//send PUT request to sheet
     		$.ajax({
-    			url: 'https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI/values/main!B1:B1?
-            valueInputOption=USER_ENTEREDkey=AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0',
+    			url: "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI/values/main!B1:B1?valueInputOption=USER_ENTEREDkey=AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0",
     			type: 'PUT',
     			data: valueAsPayload,
     			success: function(result) {

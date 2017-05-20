@@ -9,13 +9,38 @@
   crossorigin="anonymous"></script>
   </head>
   <body>
-  	<button id="p1Plus" type="button">Add 1</button>
-  	    <script>
+  	<p id="p1Score"></p>
+  	<button id="p1Plus" type="button">Player1 +</button>
+  	 
+  	<script>
     $("#p1Plus").click(function() {
     	//send a post request to the api
     	var p1Score = $.get("https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI/values/main!B1:B1?key=AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0", function (data) {
     		//parse data to get what you want
     		var value = data.values[0][0];
+
+    		//add 1 to the score
+    		value = value + 1;
+
+    		var valueAsPayload = {
+    			"range": "main!B1:B1",
+    			"majorDimension": "Dimension.ROWS",
+    			"values": [
+    				[value]
+    			]
+    		}
+
+    		//send PUT request to sheet
+    		$.ajax({
+    			url: 'https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI/values/main!B1:B1?
+            valueInputOption=USER_ENTEREDkey=AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0',
+    			type: 'PUT',
+    			data: valueAsPayload,
+    			success: function(result) {
+        			// Do something with the result
+        			alert("made the put");
+    			}
+			});
 
     		//log result to console
     		console.log(value);
@@ -23,5 +48,8 @@
     	});
     });
     </script>
+
+    <p id="p2score"></p>
+    <button id="p2Plus" type="button">Player2 +</button>
   </body>
 </html>

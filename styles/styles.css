@@ -1,0 +1,42 @@
+html {
+	height: 95%;
+}
+body {
+  font: 600 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
+  height: 100%;
+}
+h1 {
+  color: #9799a7;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+.container:before,
+.container:after {
+  content: "";
+  display: table;
+}
+.container:after {
+  clear: both;
+}
+.container {
+  background: #eaeaed;
+/*  margin-bottom: 24px;*/
+  height: 100%;
+}
+.container,
+section {
+  border-radius: 6px;
+}
+section {
+  background: #2db34a;
+  color: #fff;
+  margin: 1.858736059%;
+  padding: 20px 0;
+  text-align: center;
+}
+section {
+  float: left;
+  width: 96%;
+  height: 38%;
+}

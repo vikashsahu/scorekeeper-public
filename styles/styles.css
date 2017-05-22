@@ -32,13 +32,13 @@ section {
   background: #2db34a;
   color: #fff;
   margin: 1.858736059%;
-  padding: 20px 0;
+  /*padding: 20px 0;*/
   text-align: center;
 }
 section {
   float: left;
   width: 96%;
-  height: 38%;
+  height: 46%;
 }
 a.fill-div {
 	display: block;

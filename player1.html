@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Scorekeeper Player 1</title>
-    <script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"
+<head>
+  <meta charset="UTF-8">
+  <meta name="google-signin-client_id" content="651150583918-pcnvjcgd6803ph6hrm08ft7tg47na46t.apps.googleusercontent.com">
+  <title>Scorekeeper Player 1</title>
+  <script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"
   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
   crossorigin="anonymous"></script>
-  </head>
-  <body>
-  	<p id="p1Score"></p>
-  	<button id="p1Plus" type="button">Player1 +</button>
-  	 
-  	<script>
-    $("#p1Plus").click(function() {
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+<body>
+  <div class="g-signin2" data-onsuccess="onSignIn"></div>
+  <p id="p1Score"></p>
+  <button id="p1Plus" type="button">Player1 +</button>
+
+  <script>
+  $("#p1Plus").click(function() {
     	//send a post request to the api
     	var p1Score = $.get("https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI/values/main!B1:B1?key=AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0", function (data) {
     		//parse data to get what you want
@@ -27,9 +30,9 @@
     			"range": "main!B1:B1",
     			"majorDimension": "ROWS",
     			"values": [
-    				[value]
-    			],
-    		}
+          [value]
+          ],
+        }
 
     		//send PUT request to sheet
     		$.ajax({
@@ -39,17 +42,17 @@
     			success: function(result) {
         			// Do something with the result
         			alert("made the put");
-    			}
-			});
+           }
+         });
 
     		//log result to console
     		console.log(value);
     		//console.log(data.values);
     	});
-    });
-    </script>
+});
+</script>
 
-    <p id="p2score"></p>
-    <button id="p2Plus" type="button">Player2 +</button>
-  </body>
+<p id="p2score"></p>
+<button id="p2Plus" type="button">Player2 +</button>
+</body>
 </html>

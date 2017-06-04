@@ -141,7 +141,10 @@
         var request = gapi.client.request({
           'method': 'PUT',
           'path': 'https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI/values/main!B1:B1',
-          'params': {'key': 'AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0'},
+          'params': {
+            'key': 'AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0',
+            'valueInputOption': 'USER_ENTERED'
+          },
           'body': valueAsPayload
         });
 

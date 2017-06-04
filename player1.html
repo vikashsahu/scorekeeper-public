@@ -2,12 +2,14 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <meta name="google-signin-client_id" content="651150583918-pcnvjcgd6803ph6hrm08ft7tg47na46t.apps.googleusercontent.com">
+<meta name="google-signin-client_id" content="651150583918-pcnvjcgd6803ph6hrm08ft7tg47na46t.apps.googleusercontent.com">
+
   <title>Scorekeeper Player 1</title>
   <script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"
   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
   crossorigin="anonymous"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
   <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 <body>
@@ -16,9 +18,17 @@
   <button id="p1Plus" type="button">Player1 +</button>
 
   <script>
+  function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    console.log('Name: ' + profile.getName());
+  }
+  </script>
+
+  <script>
   $("#p1Plus").click(function() {
     	//send a post request to the api
-    	var p1Score = $.get("https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI/values/main!B1:B1?key=AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0", function (data) {
+      var p1Score = $.get("https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI/values/main!B1:B1", function (data) {
+    	/*var p1Score = $.get("https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI/values/main!B1:B1?key=AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0", function (data) {*/
     		//parse data to get what you want
     		var value = parseInt(data.values[0][0]);
         //log the value
@@ -36,10 +46,7 @@
 
     		//send PUT request to sheet
     		$.ajax({
-    			url: "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI/values/main!B1:B1?responseValueRenderOption=UNFORMATTED_VALUE&valueInputOption=USER_ENTERED&responseDateTimeRenderOption=FORMATTED_STRING&includeValuesInResponse=true&alt=json&key=AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0",
-
-/*https://content-sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI/values/main!B1%3AB1?responseValueRenderOption=UNFORMATTED_VALUE&valueInputOption=USER_ENTERED&responseDateTimeRenderOption=FORMATTED_STRING&includeValuesInResponse=true&alt=json&key=AIzaSyD-a9IF8KKYgoC3cpgS-Al7hLQDbugrDcw*/
-
+    			url: "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI/values/main!B1:B1",
     			type: 'PUT',
     			data: valueAsPayload,
     			success: function(result) {

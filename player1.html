@@ -27,8 +27,7 @@
   <script>
   $("#p1Plus").click(function() {
     	//send a post request to the api
-      var p1Score = $.get("https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI/values/main!B1:B1", function (data) {
-    	/*var p1Score = $.get("https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI/values/main!B1:B1?key=AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0", function (data) {*/
+    	var p1Score = $.get("https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI/values/main!B1:B1?key=AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0", function (data) {
     		//parse data to get what you want
     		var value = parseInt(data.values[0][0]);
         //log the value

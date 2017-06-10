@@ -13,13 +13,24 @@ $(document).ready(function() {
 });
 
 //TODO: rewrite this function to take in a parameter, playerName, and set the range based on this param.
-function increasePlayer() {
+function increasePlayer(playerID) {
 	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
 	var sheetName = "main";
 	var pubKey = "AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0";
 
-	var cell="B1";
+	var cell;
 	var range = sheetName + "!" + cell + ":" + cell;//main!B1:B1
+
+	//set the cell based on the playerID
+	if (playerID == 1) {
+		cell = "B1";
+	} else if (playerID == 2) {
+		cell = "B5";
+	} else if (playerID == 3) {
+		cell = "B10";
+	} else if (playerID == 4) {
+		cell="B14";
+	}
 
 	//TODO: you can reduce the number of requests by half if the value is stored on the frontend rather than retrieved with a GET each time
 	var getURL = baseURL + "/values/" + range + "?key=" + pubKey;

@@ -12,10 +12,10 @@
 </head>
 <body>
 
-<button id="sign-in-or-out-button" style="margin-left: 25px">Sign In/Authorize</button>
-<button id="revoke-access-button" style="display: none; margin-left: 25px">Revoke access</button>
+  <button id="sign-in-or-out-button" style="margin-left: 25px">Sign In/Authorize</button>
+  <button id="revoke-access-button" style="display: none; margin-left: 25px">Revoke access</button>
 
-<div id="auth-status" style="display: inline; padding-left: 25px"></div><hr>
+  <div id="auth-status" style="display: inline; padding-left: 25px"></div><hr>
 
   <script async defer src="https://apis.google.com/js/api.js" 
   onload="this.onload=function(){};handleClientLoad()" 
@@ -26,45 +26,15 @@
   <button id="p1Plus" type="button">Player1 +</button>
 
   <script>
-  $("#p1Plus").click(increasePlayer);
-  /*$("#p1Plus").click(function() {
-    	//send a post request to the api
-    	var p1Score = $.get("https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI/values/main!B1:B1?key=AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0", function (data) {
-    		//parse data to get what you want
-    		var value = parseInt(data.values[0][0]);
-        //log the value
-        console.log('value: ' + value);
-    		//add 1 to the score
-    		value = value + 1;
-
-    		var valueAsPayload = {
-    			"range": "main!B1:B1",
-    			"majorDimension": "ROWS",
-    			"values": [
-          [value]
-          ],
-        }
-
-        //Use gapi.client.request(args) function
-        var request = gapi.client.request({
-          'method': 'PUT',
-          'path': 'https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI/values/main!B1:B1',
-          'params': {
-            'key': 'AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0',
-            'valueInputOption': 'USER_ENTERED'
-          },
-          'body': valueAsPayload
-        });
-
-        //Execute the API request.
-        request.execute(function(response) {
-          //console.log(response);
-        });
-    	});
-  });*/
+  $("#p1Plus").click(increasePlayer(1));
   </script>
 
-<p id="p2score"></p>
-<button id="p2Plus" type="button">Player2 +</button>
+  <p id="p2score"></p>
+  <button id="p2Plus" type="button">Player2 +</button>
+
+  <script>
+  <$("p2Plus").click(increasePlayer(2));
+  </script>
+  
 </body>
 </html>

@@ -19,7 +19,6 @@ function increasePlayer(playerID) {
 	var pubKey = "AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0";
 
 	var cell;
-	var range = sheetName + "!" + cell + ":" + cell;//main!B1:B1
 
 	//set the cell based on the playerID
 	if (playerID == 1) {
@@ -31,6 +30,8 @@ function increasePlayer(playerID) {
 	} else if (playerID == 4) {
 		cell="B14";
 	}
+
+	var range = sheetName + "!" + cell + ":" + cell;//main!B1:B1
 
 	//TODO: you can reduce the number of requests by half if the value is stored on the frontend rather than retrieved with a GET each time
 	var getURL = baseURL + "/values/" + range + "?key=" + pubKey;

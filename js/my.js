@@ -12,8 +12,52 @@ $(document).ready(function() {
 	});
 });
 
-//Begin oAuth2.0 Code
+//TODO: rewrite this function to take in a parameter, playerName, and set the range based on this param.
+function increasePlayer() {
+	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
+	var sheetName = "main";
+	var pubKey = "AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0";
 
+	var cell="B1";
+	var range = sheetName + "!" + cell + ":" + cell;//main!B1:B1
+
+	//TODO: you can reduce the number of requests by half if the value is stored on the frontend rather than retrieved with a GET each time
+	var getURL = baseURL + "/values/" + range + "?key=" + pubKey;
+	var postURL = baseURL + "/values/" + range;
+	//send GET to the requestURL to get the value currently stored in the sheet
+	$.get(getURL, function(data) {
+		//parse data to get the value
+		var value = parseInt(data.values[0][0]);
+		value = value + 1;
+
+		//TODO: update the score in the view
+		var valueAsPayload = {
+			"range": range,
+			"majorDimension": "ROWS",
+			"values": [
+				[value]
+			],
+		}
+
+		//Use gapi.client.request(args) function
+    	var request = gapi.client.request({
+        	'method': 'PUT',
+        	'path': postURL,
+        	'params': {
+        		'key': pubKey,
+        		'valueInputOption': 'USER_ENTERED'
+        	},
+        	'body': valueAsPayload
+    	});
+
+    	//Execute the API request.
+    	request.execute(function(response) {
+    		console.log(response);
+    	});
+	});//end $.get()
+}//end function
+
+//Begin oAuth2.0 Code
 var GoogleAuth;
 var SCOPE = 'https://www.googleapis.com/auth/spreadsheets';
 function handleClientLoad() {

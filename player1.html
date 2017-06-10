@@ -26,14 +26,18 @@
   <button id="p1Plus" type="button">Player1 +</button>
 
   <script>
-  $("#p1Plus").click(increasePlayer(1));
+  $("#p1Plus").click(function() {
+    increasePlayer(1);
+  });
   </script>
 
   <p id="p2score"></p>
   <button id="p2Plus" type="button">Player2 +</button>
 
   <script>
-  $("#p2Plus").click(increasePlayer(2));
+  $("#p2Plus").click(function() {
+    increasePlayer(2);
+  });
   </script>
 
 </body>

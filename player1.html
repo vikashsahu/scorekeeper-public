@@ -22,21 +22,34 @@
   onreadystatechange="if (this.readyState === 'complete') this.onload()">
   </script>
 
-  <p id="p1Score"></p>
-  <button id="p1Plus" type="button">Player1 +</button>
+  <!--button id="p1Plus" type="button">Player1 +</button-->
 
-  <script>
+  <!--script>
   $("#p1Plus").click(function() {
     increasePlayer(1);
   });
-  </script>
+  </script-->
 
-  <p id="p2score"></p>
-  <button id="p2Plus" type="button">Player2 +</button>
+  <!--button id="p2Plus" type="button">Player2 +</button-->
 
-  <script>
+  <!--script>
   $("#p2Plus").click(function() {
     increasePlayer(2);
+  });
+  </script-->
+
+  <div class="container">
+      <section>
+        <a href="#" class="fill-div" id="p1">0</a>
+      </section>
+      <section>
+        <a href="#" class="fill-div" id="p2">0</a>
+      </section>
+  </div>
+
+  <script>
+  $("a#p1").click(function() {
+    increasePlayer(1);
   });
   </script>
 

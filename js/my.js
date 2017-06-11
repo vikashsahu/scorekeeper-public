@@ -134,6 +134,8 @@ function setSigninStatus(isSignedIn) {
 		$('#revoke-access-button').css('display', 'inline-block');
 		$('#auth-status').html('You are currently signed in and have granted ' +
 			'access to this app.');
+		//display the scorekeeper view
+		$('.container').css('display', 'table');
 	} else {
 		$('#sign-in-or-out-button').html('Sign In/Authorize');
 		$('#revoke-access-button').css('display', 'none');

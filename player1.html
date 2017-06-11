@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
 
   <title>Scorekeeper Player 1</title>
+  <link rel = "stylesheet" type = "text/css" href = "styles/styles.css" />
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"
   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
   crossorigin="anonymous"></script>
@@ -11,32 +12,6 @@
   <script src="js/my.js" type="text/javascript"></script>
 </head>
 <body>
-
-  <button id="sign-in-or-out-button" style="margin-left: 25px">Sign In/Authorize</button>
-  <button id="revoke-access-button" style="display: none; margin-left: 25px">Revoke access</button>
-
-  <div id="auth-status" style="display: inline; padding-left: 25px"></div><hr>
-
-  <script async defer src="https://apis.google.com/js/api.js" 
-  onload="this.onload=function(){};handleClientLoad()" 
-  onreadystatechange="if (this.readyState === 'complete') this.onload()">
-  </script>
-
-  <!--button id="p1Plus" type="button">Player1 +</button-->
-
-  <!--script>
-  $("#p1Plus").click(function() {
-    increasePlayer(1);
-  });
-  </script-->
-
-  <!--button id="p2Plus" type="button">Player2 +</button-->
-
-  <!--script>
-  $("#p2Plus").click(function() {
-    increasePlayer(2);
-  });
-  </script-->
 
   <div class="container">
       <section>
@@ -50,6 +25,12 @@
   <script>
   $("a#p1").click(function() {
     increasePlayer(1);
+  });
+  </script>
+
+  <script>
+  $("a#p2").click(function() {
+    increasePlayer(2);
   });
   </script>
 

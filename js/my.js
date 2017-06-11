@@ -131,7 +131,7 @@ function setSigninStatus(isSignedIn) {
 	var isAuthorized = user.hasGrantedScopes(SCOPE);
 	if (isAuthorized) {
 		//$('#sign-in-or-out-button').html('Sign out');
-		$('#sign-in-or-out-button').css('display', 'none');
+		$('#sign-in-or-out-button').css('display', 'none');//remove this line when you want to test on mobile
 		$('#revoke-access-button').css('display', 'inline-block');
 		$('#auth-status').html('You are currently signed in and have granted ' +
 			'access to this app.');

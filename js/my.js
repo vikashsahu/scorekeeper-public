@@ -130,14 +130,16 @@ function setSigninStatus(isSignedIn) {
 	var user = GoogleAuth.currentUser.get();
 	var isAuthorized = user.hasGrantedScopes(SCOPE);
 	if (isAuthorized) {
-		$('#sign-in-or-out-button').html('Sign out');
+		//$('#sign-in-or-out-button').html('Sign out');
+		$('#sign-in-or-out-button').css('display', 'none');
 		$('#revoke-access-button').css('display', 'inline-block');
 		$('#auth-status').html('You are currently signed in and have granted ' +
 			'access to this app.');
 
 		//display the scorekeeper view
-		$('.container').css('display', 'inline-block');
+		$('.container').css('display', 'inline');
 	} else {
+		//TODO: update this block. When someone is not signed in, should hide div.container again
 		$('#sign-in-or-out-button').html('Sign In/Authorize');
 		$('#revoke-access-button').css('display', 'none');
 		$('#auth-status').html('You have not authorized this app or you are ' +

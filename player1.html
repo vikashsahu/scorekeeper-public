@@ -13,6 +13,16 @@
 </head>
 <body>
 
+  <button id="sign-in-or-out-button" style="margin-left: 25px">Sign In/Authorize</button>
+  <button id="revoke-access-button" style="display: none; margin-left: 25px">Revoke access</button>
+
+  <div id="auth-status" style="display: inline; padding-left: 25px"></div><hr>
+
+  <script async defer src="https://apis.google.com/js/api.js" 
+  onload="this.onload=function(){};handleClientLoad()" 
+  onreadystatechange="if (this.readyState === 'complete') this.onload()">
+  </script>
+
   <div class="container">
       <section>
         <a href="#" class="fill-div" id="p1">0</a>

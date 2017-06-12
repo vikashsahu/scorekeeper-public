@@ -5,6 +5,7 @@ a.fill-div {
   font-size: 150px;
   font-weight: bold;
   text-align: center;
+  text-decoration: none;
 }
 
 td {
@@ -15,4 +16,10 @@ h1 {
   font-size: 150px;
   font-weight: bold;
   text-align: center;
+}
+
+a#reset, a#complete {
+  display: block;
+  height: 100%;
+  width: 100%;
 }

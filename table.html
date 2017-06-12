@@ -14,7 +14,6 @@
 <body>
   <button id="sign-in-or-out-button" style="margin-left: 25px">Sign In/Authorize</button>
   <br>
-  <br>
   <!--button id="revoke-access-button" style="display: none; margin-left: 25px">Revoke access</button-->
   <div id="auth-status" style="display: inline; padding-left: 25px"></div>
 
@@ -25,15 +24,37 @@
 
   <table style="height:80%;width:95%; top: 2%; bottom: 2%; left: 2%; right: 2%;border:1px solid">
 
-    <tr style="height: 50%;">
-      <td>P1 Sets</td>
-      <td style="border:1px solid;width:75%"><a class="fill-div" href="#" id="p1">0</a></td>
-      <td rowspan="2" style="border:1px solid;width:25%"><a class="fill-div" href="#" id="reset">Reset</a></td>
+    <!--reset match row-->
+    <tr style="height: 10%">
+      <td style="border:1px solid;width:25%"><a href="#" id="reset">Reset Match</a></td>
     </tr>
 
-    <tr style="height: 50%;width:75%">
-      <td>P2 Sets</td>
-      <td style="border:1px solid"><a class="fill-div" href="#" id="p2">0</a></td>
+    <!--player 1 row-->
+    <tr style="height: 40%;width:75%">
+      <!--player 1 current game score-->
+      <td style="border:1px solid;width:75%"><a class="fill-div" href="#" id="p1">0</a></td>
+      <td style="border:1px solid;width:25%">
+        <table style="height:100%">
+          <tr><td style="border:1px solid;">-1</td></tr>
+          <tr><td style="border:1px solid;" id="p1sets">p1sets</td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <!--player 2 row-->
+    <tr style="height: 40%;width:75%">
+      <td style="border:1px solid;width:75%"><a class="fill-div" href="#" id="p2">0</a></td>
+      <td style="border:1px solid;width:25%">
+        <table style="height:100%">
+          <tr><td style="border:1px solid;">-1</td></tr>
+          <tr><td style="border:1px solid;" id="p2sets">p2sets</td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <!--complete game row-->
+    <tr style="height: 10%">
+      <td style="border:1px solid;width:100%"><a href="#" id="complete">Complete Game</a></td>
     </tr>
 </table>​
 

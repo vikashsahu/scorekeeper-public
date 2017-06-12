@@ -174,8 +174,8 @@ function setSigninStatus(isSignedIn) {
 	var user = GoogleAuth.currentUser.get();
 	var isAuthorized = user.hasGrantedScopes(SCOPE);
 	if (isAuthorized) {
-		$('#sign-in-or-out-button').html('Sign out');//remove this line eventually
-		//$('#sign-in-or-out-button').css('display', 'none');//remove this line when you want to test on mobile
+		//$('#sign-in-or-out-button').html('Sign out');//remove this line eventually
+		$('#sign-in-or-out-button').css('display', 'none');//remove this line when you want to test on mobile
 		$('#revoke-access-button').css('display', 'inline-block');
 		$('#auth-status').html('You are currently signed in and have granted ' +
 			'access to this app.');

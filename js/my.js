@@ -21,8 +21,8 @@ function reset(matchID) {
 	var rangeTwo;
 
 	if (matchID == 1) {
-		rangeOne = "B1";
-		rangeTwo = "B5";
+		rangeOne = "B3";
+		rangeTwo = "B4";
 	}
 
 	var range = sheetName + "!" + rangeOne + ":" + rangeTwo;//main!B1:B5
@@ -64,13 +64,13 @@ function increasePlayer(playerID) {
 
 	//set the cell based on the playerID
 	if (playerID == 1) {
-		cell = "B1";
+		cell = "B3";
 	} else if (playerID == 2) {
-		cell = "B5";
+		cell = "B4";
 	} else if (playerID == 3) {
 		cell = "B10";
 	} else if (playerID == 4) {
-		cell="B14";
+		cell="B11";
 	}
 
 	var range = sheetName + "!" + cell + ":" + cell;//main!B1:B1

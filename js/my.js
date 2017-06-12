@@ -12,6 +12,49 @@ $(document).ready(function() {
 	});
 });
 
+function reset(matchID) {
+	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
+	var sheetName = "main";
+	var pubKey = "AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0";
+
+	var rangeOne;
+	var rangeTwo;
+
+	if (matchID == 1) {
+		rangeOne = "B1";
+		rangeTwo = "B5";
+	}
+
+	var range = sheetName + "!" + rangeOne + ":" + rangeTwo;//main!B1:B5
+
+	var postURL = baseURL + "/values/" + range;
+
+	var valueAsPayload = {
+		"range": range,
+		"majorDimension": "COLUMNS",
+		"values": [
+		[0],
+		[0]
+		],
+	}
+
+		//Use gapi.client.request(args) function
+		var request = gapi.client.request({
+			'method': 'PUT',
+			'path': postURL,
+			'params': {
+				'key': pubKey,
+				'valueInputOption': 'USER_ENTERED'
+			},
+			'body': valueAsPayload
+		});
+
+    	//Execute the API request.
+    	request.execute(function(response) {
+    		console.log(response);
+    	});
+}//end function reset
+
 //TODO: rewrite this function to take in a parameter, playerName, and set the range based on this param.
 function increasePlayer(playerID) {
 	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
@@ -47,20 +90,20 @@ function increasePlayer(playerID) {
 			"range": range,
 			"majorDimension": "ROWS",
 			"values": [
-				[value]
+			[value]
 			],
 		}
 
 		//Use gapi.client.request(args) function
-    	var request = gapi.client.request({
-        	'method': 'PUT',
-        	'path': postURL,
-        	'params': {
-        		'key': pubKey,
-        		'valueInputOption': 'USER_ENTERED'
-        	},
-        	'body': valueAsPayload
-    	});
+		var request = gapi.client.request({
+			'method': 'PUT',
+			'path': postURL,
+			'params': {
+				'key': pubKey,
+				'valueInputOption': 'USER_ENTERED'
+			},
+			'body': valueAsPayload
+		});
 
     	//Execute the API request.
     	request.execute(function(response) {

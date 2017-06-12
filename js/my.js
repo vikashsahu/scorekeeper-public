@@ -33,8 +33,7 @@ function reset(matchID) {
 		"range": range,
 		"majorDimension": "COLUMNS",
 		"values": [
-		[0],
-		[0]
+		[0, 0]
 		],
 	}
 

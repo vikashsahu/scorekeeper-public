@@ -1,4 +1,4 @@
-$(document).ready(function() {
+/*$(document).ready(function() {
 	$("a#p1").click(function() {
 		var score = parseInt($("a#p1").text());
 		score = score + 1;
@@ -10,8 +10,9 @@ $(document).ready(function() {
 		score = score + 1;
 		$("a#p2").text(score);
 	});
-});
+});*/
 
+//resets the scores of a match, not the sets
 function reset(matchID) {
 	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
 	var sheetName = "main";
@@ -21,11 +22,11 @@ function reset(matchID) {
 	var rangeTwo;
 
 	if (matchID == 1) {
-		rangeOne = "B3";
-		rangeTwo = "B4";
+		rangeOne = "B4";
+		rangeTwo = "B5";
 	}
 
-	var range = sheetName + "!" + rangeOne + ":" + rangeTwo;//main!B1:B5
+	var range = sheetName + "!" + rangeOne + ":" + rangeTwo;//main!B4:B5
 
 	var postURL = baseURL + "/values/" + range;
 
@@ -64,16 +65,12 @@ function increasePlayer(playerID) {
 
 	//set the cell based on the playerID
 	if (playerID == 1) {
-		cell = "B3";
-	} else if (playerID == 2) {
 		cell = "B4";
-	} else if (playerID == 3) {
-		cell = "B10";
-	} else if (playerID == 4) {
-		cell="B11";
+	} else if (playerID == 2) {
+		cell = "B5";
 	}
 
-	var range = sheetName + "!" + cell + ":" + cell;//main!B1:B1
+	var range = sheetName + "!" + cell + ":" + cell;//main!B4:B4
 
 	//TODO: you can reduce the number of requests by half if the value is stored on the frontend rather than retrieved with a GET each time
 	var getURL = baseURL + "/values/" + range + "?key=" + pubKey;
@@ -84,7 +81,12 @@ function increasePlayer(playerID) {
 		var value = parseInt(data.values[0][0]);
 		value = value + 1;
 
-		//TODO: update the score in the view
+		if (playerID==1) {
+			$("a#p1").text(value);
+		} else if (playerID==2) {
+			$("a#p2").text(value);
+		}
+
 		var valueAsPayload = {
 			"range": range,
 			"majorDimension": "ROWS",

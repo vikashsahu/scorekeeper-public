@@ -1,4 +1,4 @@
-$(document).ready(function() {
+/*$(document).ready(function() {
 	$("a#p1").click(function() {
 		var score = parseInt($("a#p1").text());
 		score = score + 1;
@@ -10,7 +10,98 @@ $(document).ready(function() {
 		score = score + 1;
 		$("a#p2").text(score);
 	});
-});
+});*/
+
+//the array that we'll use for undo
+var stack = [];
+
+//temporary function that only increases
+//the number on the frontend
+//without making an api request
+function incP1Temp() {
+	//log "1" on the stack for undo
+	stack.push("1");
+
+	var score = parseInt($("a#p1").text());//get existing value
+	score = score + 1;//add 1
+	$("a#p1").text(score);//set new value on frontend
+}
+
+//temporary function that only increases
+//the number on the frontend
+//without making an api request
+function incP2Temp() {
+	//log "2" on the stack for undo
+	stack.push("2");
+
+	var score = parseInt($("a#p2").text());
+	score = score + 1;
+	$("a#p2").text(score);
+}
+
+function undo() {
+	if (stack.length > 0) {
+		var topElement = stack.pop();
+		if (topElement == "1") {
+			var score = parseInt($("a#p1").text());
+			score = score - 1;
+			$("a#p1").text(score);
+		} else if (topElement == "2") {
+			var score = parseInt($("a#p2").text());
+			score = score - 1;
+			$("a#p2").text(score);
+		} else {
+		//error...
+		console.log("error in popping stack");
+		}
+	} else {
+		console.log("the score's 0-0, can't undo");
+	}
+}
+
+function isSetOver() {
+	var p1Score = parseInt($("a#p1").text());
+	var p2Score = parseInt($("a#p2").text());
+
+	var scoreDiff = p1Score - p2Score;
+	var absoluteScoreDiff = Math.abs(scoreDiff);
+
+	if (((p1Score >= 11) || (p2Score >= 11)) && (absoluteScoreDiff >= 2)) {
+		//the set is over
+		//clear the stack
+		stack = [];
+
+		//find out who's the winner
+		if (p1Score > p2Score) {//p1 is winner
+			$("a#p1").text("0");//reset p1 score
+			$("a#p2").text("0");//reset p2 score
+
+			//increment p1 set count
+			var setScore = parseInt($("#p1Sets").text());
+			setScore = setScore + 1;
+			$("#p1Sets").text(setScore);
+		} else if (p2Score > p1Score) {//p2 is winner
+			$("a#p1").text("0");//reset p1 score
+			$("a#p2").text("0");//reset p2 score
+
+			//increment p2 set count
+			var setScore = parseInt($("#p2Sets").text());
+			setScore = setScore + 1;
+			$("#p2Sets").text(setScore);
+		} else {
+			//error...
+			console.log("error in finding the winner of the set");
+		}
+	}
+}
+
+function resetMatch() {
+	$("a#p1").text("0");//reset p1 score
+	$("a#p2").text("0");//reset p2 score
+	$("#p1Sets").text("0");//reset p1sets
+	$("#p2Sets").text("0");//reset p2sets
+	stack = [];//clear the stack
+}
 
 //resets the scores of a match, not the sets
 function reset(matchID) {

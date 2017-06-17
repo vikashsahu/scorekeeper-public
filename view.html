@@ -1,31 +1,58 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>title</title>
-    <link rel = "stylesheet" type = "text/css" href = "styles/old.css" />
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-    <script src="js/my.js"></script>
-  </head>
-  <body>
-  	<div class="container">
-  		<section class="main">
-          <div style="width:10%;float:left;font-size:20px">2</div>
-          <div style="width:80%;text-align:center;float:left"><a href="#" class="fill-div" id="p1">0</a></div>
-  		</section>
-      <section class="secondary">
-        <a href="#" class="fill-div">undo</a>
-      </section>
-      <section class="secondary">
-        <a href="#" class="fill-div">button</a>
-      </section>
-      <section class="secondary">
-        <a href="#" class="fill-div">reset match</a>
-      </section>
-  		<section class="main">
-          <div style="width:10%;float:left;font-size:20px">2</div>
-          <div style="width:80%;text-align:center;float:left"><a href="#" class="fill-div" id="p2">0</a></div>
-  		</section>
-  	</div>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>title</title>
+  <link rel = "stylesheet" type = "text/css" href = "styles/old.css" />
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script src="js/my.js"></script>
+</head>
+<body>
+ <div class="container">
+  <section class="main">
+    <div style="width:10%;float:left;font-size:20px" id="p1Sets">0</div>
+    <div style="width:80%;text-align:center;float:left"><a href="#" class="fill-div" id="p1">0</a></div>
+  </section>
+  <section class="secondary">
+    <a href="#" class="fill-div" id="undo">undo</a>
+  </section>
+  <section class="secondary">
+    <a href="#" class="fill-div">button</a>
+  </section>
+  <section class="secondary">
+    <a href="#" class="fill-div" id="reset">reset match</a>
+  </section>
+  <section class="main">
+    <div style="width:10%;float:left;font-size:20px" id="p2Sets">0</div>
+    <div style="width:80%;text-align:center;float:left"><a href="#" class="fill-div" id="p2">0</a></div>
+  </section>
+</div>
+
+<script>
+$("a#p1").click(function() {//on click, 1. increase the score, 2. call isSetOver
+  incP1Temp();
+  isSetOver();
+});
+</script>
+
+<script>
+$("a#p2").click(function() {
+  incP2Temp();
+  isSetOver();
+});
+</script>
+
+<script>
+$("a#reset").click(function() {
+  resetMatch();
+});
+</script>
+
+<script>
+$("a#undo").click(function() {
+  undo();
+});
+</script>
+
+</body>
 </html>

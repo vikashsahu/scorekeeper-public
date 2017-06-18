@@ -144,6 +144,7 @@ function increaseSet(matchID, playerID, setScore) {
 	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
 	var sheetName = "main";
 	var pubKey = "AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0";
+	var cell;
 
 	//update this conditional to have logic for all matchIDs
 	if (matchID == 1) {

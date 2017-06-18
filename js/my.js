@@ -88,7 +88,7 @@ function isSetOver(matchID) {
 	}
 }
 
-function resetMatch() {
+function resetMatchView() {
 	$("a#p1").text("0");//reset p1 score
 	$("a#p2").text("0");//reset p2 score
 	$("#p1Sets").text("0");//reset p1sets
@@ -143,6 +143,9 @@ function reset(matchID) {
 
 	var rangeOne;
 	var rangeTwo;
+
+	//update the view
+	resetMatchView();
 
 	//will need to update this to have conditionals for all N matches
 	if (matchID == 1) {

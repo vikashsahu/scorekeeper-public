@@ -367,9 +367,9 @@ function increasePlayer(playerID) {
 
  }//end function
 
- function sendForm(time) {
+ function sendForm() {
 
- 	console.log(time);
+ 	console.log("time: " + $("input#time").text());
 
  	/*var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
 	var sheetName = "main";

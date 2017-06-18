@@ -67,6 +67,7 @@ function isSetOver(matchID) {
 			//call the function that makes the API request
 			//increaseSet(matchID, playerID, setScore);
 			increaseSet(matchID, 1, setScore);
+			zeroOutGameScore(matchID);
 		} else if (p2Score > p1Score) {//p2 is winner
 			$("a#p1").text("0");//reset p1 score
 			$("a#p2").text("0");//reset p2 score
@@ -79,6 +80,7 @@ function isSetOver(matchID) {
 			//call the function that makes the API request
 			//increaseSet(matchID, playerID, setScore);
 			increaseSet(matchID, 2, setScore);
+			zeroOutGameScore(matchID);
 		} else {
 			//error...
 			console.log("error in finding the winner of the set");
@@ -92,6 +94,44 @@ function resetMatch() {
 	$("#p1Sets").text("0");//reset p1sets
 	$("#p2Sets").text("0");//reset p2sets
 	stack = [];//clear the stack
+}
+
+function zeroOutGameScore(matchID) {
+	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
+	var sheetName = "main";
+	var pubKey = "AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0";
+	var valueRange;
+
+	if (matchID == 1) {
+		valueRange = "C4:C5";
+	}
+
+	var range = sheetName + "!" + valueRange;//main!B4:B5
+	var postURL = baseURL + "/values/" + range;
+
+	var valueAsPayload = {
+		"range": range,
+		"majorDimension": "COLUMNS",
+		"values": [
+		[0, 0]
+		]
+	}
+
+	//Use gapi.client.request(args) function
+		var request = gapi.client.request({
+			'method': 'PUT',
+			'path': postURL,
+			'params': {
+				'key': pubKey,
+				'valueInputOption': 'USER_ENTERED'
+			},
+			'body': valueAsPayload
+		});
+
+    	//Execute the API request.
+    	request.execute(function(response) {
+    		console.log(response);
+    	});
 }
 
 //resets current game score and sets

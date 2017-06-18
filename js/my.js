@@ -146,6 +146,9 @@ function increaseSet(matchID, playerID, setScore) {
 	var pubKey = "AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0";
 	var cell;
 
+	console.log("matchID: " + matchID);
+	console.log("playerID: " + playerID);
+
 	//update this conditional to have logic for all matchIDs
 	if (matchID == 1) {
 		if (playerID==1) {

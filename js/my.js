@@ -367,11 +367,17 @@ function increasePlayer(playerID) {
 
  }//end function
 
- function sendForm() {
+ function sendForm(matchID) {
 
- 	console.log($("form").serializeArray());
+ 	var formAsArrayOfObjects = $("form").serializeArray();
+ 	var time = formAsArrayOfObjects[0].value;
+ 	var eventName = formAsArrayOfObjects[1].value;
+ 	var table = formAsArrayOfObjects[2].value;
+ 	var opponent = formAsArrayOfObjects[3].value;
 
- 	/*var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
+ 	console.log(time + " " + eventName + " " + table + " " + opponent);
+
+ 	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
 	var sheetName = "main";
 	var pubKey = "AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0";
 
@@ -388,7 +394,7 @@ function increasePlayer(playerID) {
 		"range": range,
 		"majorDimension": "ROWS",
 		"values": [
-		[time, event, table, opponent]
+		[time, eventName, table, opponent]
 		],
 	}
 
@@ -406,8 +412,7 @@ function increasePlayer(playerID) {
     //Execute the API request.
     request.execute(function(response) {
     	console.log(response);
-    });*/
-
+    });
  }
 
 /*function increasePlayerWithGet(playerID) {

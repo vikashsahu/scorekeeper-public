@@ -155,14 +155,6 @@ function increaseSet(matchID, playerID, setScore) {
 		} else {
 			console.log("error in increaseSet, matchid=1");
 		}
-	} else if (matchID == 2) {
-		if (playerID==1) {
-			cell = "B10";
-		} else if (playerID==2) {
-			cell = "B11";
-		} else {
-			console.log("error in increaseSet, matchid=2");
-		}
 	}
 
 	var range = sheetName + "!" + cell + ":" + cell;//main!B4:B4

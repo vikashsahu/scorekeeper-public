@@ -45,20 +45,20 @@
 <script>
 $("a#p1").click(function() {//on click, 1. increase the score, 2. call isSetOver
   incP1Temp();
-  isSetOver();
+  isSetOver(1);//isSetOver(matchID); change this param based on match
 });
 </script>
 
 <script>
 $("a#p2").click(function() {
   incP2Temp();
-  isSetOver();
+  isSetOver(2);//isSetOver(matchID); change this param based on match
 });
 </script>
 
 <script>
 $("a#reset").click(function() {
-  reset(1);
+  reset(1);//reset(matchID);
 });
 </script>
 

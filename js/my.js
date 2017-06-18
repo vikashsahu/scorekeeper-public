@@ -9,9 +9,10 @@ function incP1Temp() {
 	//log "1" on the stack for undo
 	stack.push("1");
 
-	var score = parseInt($("a#p1").text());//get existing value
-	score = score + 1;//add 1
-	$("a#p1").text(score);//set new value on frontend
+	increasePlayer(1);
+	//var score = parseInt($("a#p1").text());//get existing value
+	//score = score + 1;//add 1
+	//$("a#p1").text(score);//set new value on frontend
 }
 
 //temporary function that only increases
@@ -21,9 +22,10 @@ function incP2Temp() {
 	//log "2" on the stack for undo
 	stack.push("2");
 
-	var score = parseInt($("a#p2").text());
-	score = score + 1;
-	$("a#p2").text(score);
+	increasePlayer(2);
+	//var score = parseInt($("a#p2").text());
+	//score = score + 1;
+	//$("a#p2").text(score);
 }
 
 function undo() {
@@ -40,10 +42,10 @@ function undo() {
 		} else {
 		//error...
 		console.log("error in popping stack");
-		}
-	} else {
-		console.log("the score's 0-0, can't undo");
 	}
+} else {
+	console.log("the score's 0-0, can't undo");
+}
 }
 
 function isSetOver() {
@@ -133,8 +135,66 @@ function reset(matchID) {
     	});
 }//end function reset
 
-//TODO: rewrite this function to take in a parameter, playerName, and set the range based on this param.
 function increasePlayer(playerID) {
+	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
+	var sheetName = "main";
+	var pubKey = "AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0";
+
+	var cell;
+	var score;
+
+	//set the cell based on the playerID
+	if (playerID == 1) {
+		cell = "C4";
+	} else if (playerID == 2) {
+		cell = "C5";
+	} else if (playerID == 3) {
+		cell = "C10";
+	} else if (playerID == 4) {
+		cell = "C11";
+	}
+
+	var range = sheetName + "!" + cell + ":" + cell;//main!B4:B4
+	var postURL = baseURL + "/values/" + range;
+
+	if (playerID % 2 == 1) {//the "first" player -- P1, P3, etc.
+		score = parseInt($("a#p1").text());
+		score = score + 1;//set value on the frontend
+		$("a#p1").text(score);
+	} else {//the "second" player -- P2, P4, etc.
+	score = parseInt($("a#p2").text());
+	score = score + 1;
+		$("a#p2").text(score);//set value on the frontend
+	}
+
+	var valueAsPayload = {
+		"range": range,
+		"majorDimension": "ROWS",
+		"values": [
+		[score]
+		],
+	}
+
+	//Use gapi.client.request(args) function
+	var request = gapi.client.request({
+		'method': 'PUT',
+		'path': postURL,
+		'params': {
+			'key': pubKey,
+			'valueInputOption': 'USER_ENTERED'
+		},
+		'body': valueAsPayload
+	});
+
+    //Execute the API request.
+    request.execute(function(response) {
+    		console.log(response);
+    });
+
+ }//end function
+
+//TODO: rewrite this function to take in a parameter, playerName, and set the range based on this param.
+function increasePlayerWithGet(playerID) {
 	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
 	var sheetName = "main";
 	var pubKey = "AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0";
@@ -143,9 +203,13 @@ function increasePlayer(playerID) {
 
 	//set the cell based on the playerID
 	if (playerID == 1) {
-		cell = "B4";
+		cell = "C4";
 	} else if (playerID == 2) {
-		cell = "B5";
+		cell = "C5";
+	} else if (playerID == 3) {
+		cell = "C10";
+	} else if (playerID == 4) {
+		cell = "C11";
 	}
 
 	var range = sheetName + "!" + cell + ":" + cell;//main!B4:B4
@@ -159,6 +223,7 @@ function increasePlayer(playerID) {
 		var value = parseInt(data.values[0][0]);
 		value = value + 1;
 
+		//this will need to be modified to have other playerIDs
 		if (playerID==1) {
 			$("a#p1").text(value);
 		} else if (playerID==2) {

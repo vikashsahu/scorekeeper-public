@@ -30,6 +30,25 @@
 </div>
 
 <hr>
+<!-- form: time, event, table, opponent -->
+<form action="javascript:sendForm(document.getElementById("time").value);">
+  Time:<br>
+  <input type="text" name="time" id="time">
+  <br>
+  Event:<br>
+  <input type="text" name="event" id="event">
+  <br>
+  Table:<br>
+  <input type="text" name="table" id="table">
+  <br>
+  Opponent:<br>
+  <input type="text" name="opponent" id="opponent">
+  <br><br>
+  <input type="submit" value="Submit">
+</form>
+<!-- end form section -->
+
+<hr>
 
 <button id="sign-in-or-out-button" style="margin-left: 25px">Sign In/Authorize</button>
 <button id="revoke-access-button" style="display: none; margin-left: 25px">Revoke access</button>

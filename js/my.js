@@ -367,6 +367,49 @@ function increasePlayer(playerID) {
 
  }//end function
 
+ function sendForm(time) {
+
+ 	console.log(time);
+
+ 	/*var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
+	var sheetName = "main";
+	var pubKey = "AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0";
+
+	var valueRange;
+
+	if (matchID == 1) {//will need to add cases for other matches...
+		valueRange = "A2:D2";
+	}
+
+	var range = sheetName + "!" + valueRange;//main!A2:D2
+	var postURL = baseURL + "/values/" + range;
+
+	var valueAsPayload = {
+		"range": range,
+		"majorDimension": "ROWS",
+		"values": [
+		[time, event, table, opponent]
+		],
+	}
+
+	//Use gapi.client.request(args) function
+	var request = gapi.client.request({
+		'method': 'PUT',
+		'path': postURL,
+		'params': {
+			'key': pubKey,
+			'valueInputOption': 'USER_ENTERED'
+		},
+		'body': valueAsPayload
+	});
+
+    //Execute the API request.
+    request.execute(function(response) {
+    	console.log(response);
+    });*/
+
+ }
+
 /*function increasePlayerWithGet(playerID) {
 	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
 	var sheetName = "main";

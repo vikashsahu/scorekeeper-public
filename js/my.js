@@ -24,16 +24,92 @@ function incP2Temp() {
 
 function undo() {
 	if (stack.length > 0) {
+
+		//the value on the stack will be the ID of the player
+		//for ex. player 4 will be 4, so the value won't just be 1 or 2
+		//thus, we can determine the index of the cell (valueRange)
+		//to decrement based only on the topmost value on the stack
+
 		var topElement = stack.pop();
 		if (topElement == "1") {
 			var score = parseInt($("a#p1").text());
 			score = score - 1;
 			$("a#p1").text(score);
-		} else if (topElement == "2") {
-			var score = parseInt($("a#p2").text());
-			score = score - 1;
-			$("a#p2").text(score);
-		} else {
+
+			//api code
+			var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
+			var sheetName = "main";
+			var pubKey = "AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0";
+
+			var cell = "C4";
+
+			var range = sheetName + "!" + cell + ":" + cell;//main!B4:B4
+			var postURL = baseURL + "/values/" + range;
+
+			var valueAsPayload = {
+				"range": range,
+				"majorDimension": "ROWS",
+				"values": [
+				[score]
+				],
+			}
+
+			//Use gapi.client.request(args) function
+			var request = gapi.client.request({
+				'method': 'PUT',
+				'path': postURL,
+				'params': {
+					'key': pubKey,
+					'valueInputOption': 'USER_ENTERED'
+			},
+			'body': valueAsPayload
+			});
+
+    		//Execute the API request.
+    		request.execute(function(response) {
+    			console.log(response);
+    		});
+
+
+} else if (topElement == "2") {
+	var score = parseInt($("a#p2").text());
+	score = score - 1;
+	$("a#p2").text(score);
+
+			//api code
+			var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
+			var sheetName = "main";
+			var pubKey = "AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0";
+
+			var cell = "C5";
+
+			var range = sheetName + "!" + cell + ":" + cell;//main!B4:B4
+			var postURL = baseURL + "/values/" + range;
+
+			var valueAsPayload = {
+				"range": range,
+				"majorDimension": "ROWS",
+				"values": [
+				[score]
+				],
+			}
+
+			//Use gapi.client.request(args) function
+			var request = gapi.client.request({
+				'method': 'PUT',
+				'path': postURL,
+				'params': {
+					'key': pubKey,
+					'valueInputOption': 'USER_ENTERED'
+			},
+			'body': valueAsPayload
+			});
+
+    		//Execute the API request.
+    		request.execute(function(response) {
+    			console.log(response);
+    		});
+} else {
 		//error...
 		console.log("error in popping stack");
 	}
@@ -88,6 +164,8 @@ function isSetOver(matchID) {
 	}
 }
 
+//sets both scores and set counts to zero, on the view only
+//and clears the stack
 function resetMatchView() {
 	$("a#p1").text("0");//reset p1 score
 	$("a#p2").text("0");//reset p2 score
@@ -118,21 +196,21 @@ function zeroOutGameScore(matchID) {
 	}
 
 	//Use gapi.client.request(args) function
-		var request = gapi.client.request({
-			'method': 'PUT',
-			'path': postURL,
-			'params': {
-				'key': pubKey,
-				'valueInputOption': 'USER_ENTERED'
-			},
-			'body': valueAsPayload
-		});
+	var request = gapi.client.request({
+		'method': 'PUT',
+		'path': postURL,
+		'params': {
+			'key': pubKey,
+			'valueInputOption': 'USER_ENTERED'
+		},
+		'body': valueAsPayload
+	});
 
     	//Execute the API request.
     	request.execute(function(response) {
     		console.log(response);
     	});
-}
+    }
 
 //resets current game score and sets
 //Match 1: Player 1, Player 2
@@ -227,7 +305,7 @@ function increaseSet(matchID, playerID, setScore) {
 
     //Execute the API request.
     request.execute(function(response) {
-    		console.log(response);
+    	console.log(response);
     });
 }
 
@@ -284,13 +362,12 @@ function increasePlayer(playerID) {
 
     //Execute the API request.
     request.execute(function(response) {
-    		console.log(response);
+    	console.log(response);
     });
 
  }//end function
 
-//TODO: rewrite this function to take in a parameter, playerName, and set the range based on this param.
-function increasePlayerWithGet(playerID) {
+/*function increasePlayerWithGet(playerID) {
 	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
 	var sheetName = "main";
 	var pubKey = "AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0";
@@ -350,7 +427,7 @@ function increasePlayerWithGet(playerID) {
     		console.log(response);
     	});
 	});//end $.get()
-}//end function
+}//end function*/
 
 //Begin oAuth2.0 Code
 var GoogleAuth;

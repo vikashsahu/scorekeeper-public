@@ -42,7 +42,7 @@ function undo() {
 }
 }
 
-function isSetOver() {
+function isSetOver(matchID) {
 	var p1Score = parseInt($("a#p1").text());
 	var p2Score = parseInt($("a#p2").text());
 
@@ -63,6 +63,10 @@ function isSetOver() {
 			var setScore = parseInt($("#p1Sets").text());
 			setScore = setScore + 1;
 			$("#p1Sets").text(setScore);
+
+			//call the function that makes the API request
+			//increaseSet(matchID, playerID, setScore);
+			increaseSet(matchID, 1, setScore);
 		} else if (p2Score > p1Score) {//p2 is winner
 			$("a#p1").text("0");//reset p1 score
 			$("a#p2").text("0");//reset p2 score
@@ -71,6 +75,10 @@ function isSetOver() {
 			var setScore = parseInt($("#p2Sets").text());
 			setScore = setScore + 1;
 			$("#p2Sets").text(setScore);
+
+			//call the function that makes the API request
+			//increaseSet(matchID, playerID, setScore);
+			increaseSet(matchID, 2, setScore);
 		} else {
 			//error...
 			console.log("error in finding the winner of the set");
@@ -131,6 +139,58 @@ function reset(matchID) {
     		console.log(response);
     	});
 }//end function reset
+
+function increaseSet(matchID, playerID, setScore) {
+	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
+	var sheetName = "main";
+	var pubKey = "AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0";
+
+	//update this conditional to have logic for all matchIDs
+	if (matchID == 1) {
+		if (playerID==1) {
+			cell = "B4";
+		} else if (playerID==2) {
+			cell = "B5";
+		} else {
+			console.log("error in increaseSet, matchid=1");
+		}
+	} else if (matchID == 2) {
+		if (playerID==1) {
+			cell = "B10";
+		} else if (playerID==2) {
+			cell = "B11";
+		} else {
+			console.log("error in increaseSet, matchid=2");
+		}
+	}
+
+	var range = sheetName + "!" + cell + ":" + cell;//main!B4:B4
+	var postURL = baseURL + "/values/" + range;
+
+	var valueAsPayload = {
+		"range": range,
+		"majorDimension": "ROWS",
+		"values": [
+		[setScore]
+		],
+	}
+
+	//Use gapi.client.request(args) function
+	var request = gapi.client.request({
+		'method': 'PUT',
+		'path': postURL,
+		'params': {
+			'key': pubKey,
+			'valueInputOption': 'USER_ENTERED'
+		},
+		'body': valueAsPayload
+	});
+
+    //Execute the API request.
+    request.execute(function(response) {
+    		console.log(response);
+    });
+}
 
 function increasePlayer(playerID) {
 	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";

@@ -10,9 +10,6 @@ function incP1Temp() {
 	stack.push("1");
 
 	increasePlayer(1);
-	//var score = parseInt($("a#p1").text());//get existing value
-	//score = score + 1;//add 1
-	//$("a#p1").text(score);//set new value on frontend
 }
 
 //temporary function that only increases
@@ -23,9 +20,6 @@ function incP2Temp() {
 	stack.push("2");
 
 	increasePlayer(2);
-	//var score = parseInt($("a#p2").text());
-	//score = score + 1;
-	//$("a#p2").text(score);
 }
 
 function undo() {
@@ -92,7 +86,8 @@ function resetMatch() {
 	stack = [];//clear the stack
 }
 
-//resets the scores of a match, not the sets
+//resets current game score and sets
+//Match 1: Player 1, Player 2
 function reset(matchID) {
 	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
 	var sheetName = "main";
@@ -101,9 +96,10 @@ function reset(matchID) {
 	var rangeOne;
 	var rangeTwo;
 
+	//will need to update this to have conditionals for all N matches
 	if (matchID == 1) {
 		rangeOne = "B4";
-		rangeTwo = "B5";
+		rangeTwo = "C5";
 	}
 
 	var range = sheetName + "!" + rangeOne + ":" + rangeTwo;//main!B4:B5
@@ -114,6 +110,7 @@ function reset(matchID) {
 		"range": range,
 		"majorDimension": "COLUMNS",
 		"values": [
+		[0, 0],
 		[0, 0]
 		],
 	}

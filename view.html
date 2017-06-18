@@ -36,6 +36,12 @@
 <div id="auth-status" style="display: inline; padding-left: 25px"></div>
 
 <!--Begin Script Section-->
+<!--For Google oAuth Stuff-->
+<script async defer src="https://apis.google.com/js/api.js" 
+  onload="this.onload=function(){};handleClientLoad()" 
+  onreadystatechange="if (this.readyState === 'complete') this.onload()">
+</script>
+
 <script>
 $("a#p1").click(function() {//on click, 1. increase the score, 2. call isSetOver
   incP1Temp();

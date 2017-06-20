@@ -41,6 +41,7 @@ function incP4() {
 	increasePlayer(4);//pass in the playerID (p3=3)
 }
 
+//currently supports: player 1, 2, 3, 4
 function undo() {
 	if (stack.length > 0) {
 
@@ -100,8 +101,8 @@ function undo() {
 			'params': {
 				'key': pubKey,
 				'valueInputOption': 'USER_ENTERED'
-		},
-		'body': valueAsPayload
+			},
+			'body': valueAsPayload
 		});
 
     	//Execute the API request.
@@ -111,6 +112,7 @@ function undo() {
     }
 }
 
+//current for all players. won't need any modifications as you add more players
 function isSetOver(matchID) {
 	var p1Score = parseInt($("a#p1").text());
 	var p2Score = parseInt($("a#p2").text());
@@ -157,6 +159,7 @@ function isSetOver(matchID) {
 	}
 }
 
+//current for all matches. won't ever need modification
 //sets both scores and set counts to zero, on the view only
 //and clears the stack
 function resetMatchView() {
@@ -167,14 +170,17 @@ function resetMatchView() {
 	stack = [];//clear the stack
 }
 
+//current for matchID = 1, 2
 function zeroOutGameScore(matchID) {
 	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
 	var sheetName = "main";
 	var pubKey = "AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0";
 	var valueRange;
 
-	if (matchID == 1) {
+	if (matchID == 1) {//the only block that has to change
 		valueRange = "C4:C5";
+	} else if (matchID == 2) {
+		valueRange = "C10:C11";
 	}
 
 	var range = sheetName + "!" + valueRange;//main!B4:B5
@@ -205,6 +211,7 @@ function zeroOutGameScore(matchID) {
     	});
     }
 
+//current for matchID = 1, 2
 //resets current game score and sets
 //Match 1: Player 1, Player 2
 function reset(matchID) {
@@ -222,6 +229,9 @@ function reset(matchID) {
 	if (matchID == 1) {
 		rangeOne = "B4";
 		rangeTwo = "C5";
+	} else if (matchID == 2) {
+		rangeOne = "B10";
+		rangeTwo = "C11";
 	}
 
 	var range = sheetName + "!" + rangeOne + ":" + rangeTwo;//main!B4:B5
@@ -254,14 +264,13 @@ function reset(matchID) {
     	});
 }//end function reset
 
+//current for matchID=1, 2
+//note that playerID should always be 1 or 2
 function increaseSet(matchID, playerID, setScore) {
 	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
 	var sheetName = "main";
 	var pubKey = "AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0";
 	var cell;
-
-	console.log("matchID: " + matchID);
-	console.log("playerID: " + playerID);
 
 	//update this conditional to have logic for all matchIDs
 	if (matchID == 1) {
@@ -271,6 +280,14 @@ function increaseSet(matchID, playerID, setScore) {
 			cell = "B5";
 		} else {
 			console.log("error in increaseSet, matchid=1");
+		}
+	} else if (matchID == 2) {
+		if (playerID==1) {
+			cell = "B10";
+		} else if (playerID==2) {
+			cell = "B11";
+		} else {
+			console.log("error in increaseSet, matchid=2");
 		}
 	}
 
@@ -302,6 +319,9 @@ function increaseSet(matchID, playerID, setScore) {
     });
 }
 
+//current for playerID = 1, 2, 3, 4
+//gets called by incP1, incP2, incP3, incP4, etc.
+//player ID = 1, 2, 3, 4...
 function increasePlayer(playerID) {
 	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
 	var sheetName = "main";
@@ -311,6 +331,7 @@ function increasePlayer(playerID) {
 	var score;
 
 	//set the cell based on the playerID
+	//this will need to be modified as you add more players
 	if (playerID == 1) {
 		cell = "C4";
 	} else if (playerID == 2) {
@@ -360,24 +381,27 @@ function increasePlayer(playerID) {
 
  }//end function
 
- function sendForm(matchID) {
+//current for matchID = 1, 2
+function sendForm(matchID) {
 
- 	var formAsArrayOfObjects = $("form").serializeArray();
- 	var time = formAsArrayOfObjects[0].value;
- 	var eventName = formAsArrayOfObjects[1].value;
- 	var table = formAsArrayOfObjects[2].value;
- 	var opponent = formAsArrayOfObjects[3].value;
+	var formAsArrayOfObjects = $("form").serializeArray();
+	var time = formAsArrayOfObjects[0].value;
+	var eventName = formAsArrayOfObjects[1].value;
+	var table = formAsArrayOfObjects[2].value;
+	var opponent = formAsArrayOfObjects[3].value;
 
  	//console.log(time + " " + eventName + " " + table + " " + opponent);
 
  	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
-	var sheetName = "main";
-	var pubKey = "AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0";
+ 	var sheetName = "main";
+ 	var pubKey = "AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0";
 
-	var valueRange;
+ 	var valueRange;
 
 	if (matchID == 1) {//will need to add cases for other matches...
 		valueRange = "A2:D2";
+	} else if (matchID == 2) {
+		valueRange = "A8:D8";
 	}
 
 	var range = sheetName + "!" + valueRange;//main!A2:D2
@@ -406,8 +430,9 @@ function increasePlayer(playerID) {
     request.execute(function(response) {
     	console.log(response);
     });
- }
+}
 
+//shows how to make a GET and parse the result
 /*function increasePlayerWithGet(playerID) {
 	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
 	var sheetName = "main";
@@ -418,12 +443,6 @@ function increasePlayer(playerID) {
 	//set the cell based on the playerID
 	if (playerID == 1) {
 		cell = "C4";
-	} else if (playerID == 2) {
-		cell = "C5";
-	} else if (playerID == 3) {
-		cell = "C10";
-	} else if (playerID == 4) {
-		cell = "C11";
 	}
 
 	var range = sheetName + "!" + cell + ":" + cell;//main!B4:B4
@@ -437,13 +456,6 @@ function increasePlayer(playerID) {
 		var value = parseInt(data.values[0][0]);
 		value = value + 1;
 
-		//this will need to be modified to have other playerIDs
-		if (playerID==1) {
-			$("a#p1").text(value);
-		} else if (playerID==2) {
-			$("a#p2").text(value);
-		}
-
 		var valueAsPayload = {
 			"range": range,
 			"majorDimension": "ROWS",
@@ -451,22 +463,6 @@ function increasePlayer(playerID) {
 			[value]
 			],
 		}
-
-		//Use gapi.client.request(args) function
-		var request = gapi.client.request({
-			'method': 'PUT',
-			'path': postURL,
-			'params': {
-				'key': pubKey,
-				'valueInputOption': 'USER_ENTERED'
-			},
-			'body': valueAsPayload
-		});
-
-    	//Execute the API request.
-    	request.execute(function(response) {
-    		console.log(response);
-    	});
 	});//end $.get()
 }//end function*/
 

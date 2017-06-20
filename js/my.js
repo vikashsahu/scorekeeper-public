@@ -108,6 +108,7 @@ function undo() {
     	request.execute(function(response) {
     		console.log(response);
     	});
+    }
 }
 
 function isSetOver(matchID) {

@@ -22,6 +22,15 @@ function incP2Temp() {
 	increasePlayer(2);
 }
 
+//TODO: will need to make one of these functions for each player you support
+function incP3() {
+
+}
+
+function incP4() {
+	
+}
+
 function undo() {
 	if (stack.length > 0) {
 

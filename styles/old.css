@@ -54,6 +54,20 @@ section.secondary{
   width: 30.7%;
   height: 15%;
 }
+section.index{
+  /*font-weight font-size(min/max?) styles...*/
+  font: 100 50px/100px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
+  background: #2db34a;
+  color: blue;
+  margin: 1%;
+  /*padding: 20px 0;*/
+  text-align: center;
+}
+section.index{
+ float: left;
+  width: 48%;
+  height: 45%; 
+}
 a.fill-div {
 	display: block;
 	height: 100%;

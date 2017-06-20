@@ -375,7 +375,7 @@ function increasePlayer(playerID) {
  	var table = formAsArrayOfObjects[2].value;
  	var opponent = formAsArrayOfObjects[3].value;
 
- 	console.log(time + " " + eventName + " " + table + " " + opponent);
+ 	//console.log(time + " " + eventName + " " + table + " " + opponent);
 
  	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
 	var sheetName = "main";

@@ -7,9 +7,10 @@ var stack = [];
 //without making an api request
 function incP1Temp() {
 	//log "1" on the stack for undo
+	//push the id of the player (p3 = 3).
 	stack.push("1");
 
-	increasePlayer(1);
+	increasePlayer(1);//pass in the playerID (p3=3)
 }
 
 //temporary function that only increases
@@ -17,6 +18,7 @@ function incP1Temp() {
 //without making an api request
 function incP2Temp() {
 	//log "2" on the stack for undo
+	//push the id of the player (p3 = 3).
 	stack.push("2");
 
 	increasePlayer(2);
@@ -24,11 +26,19 @@ function incP2Temp() {
 
 //TODO: will need to make one of these functions for each player you support
 function incP3() {
+	//log "1" on the stack for undo
+	//push the id of the player (p3 = 3).
+	stack.push("3");
 
+	increasePlayer(3);//pass in the playerID (p3=3)
 }
 
 function incP4() {
-	
+	//log "1" on the stack for undo
+	//push the id of the player (p3 = 3).
+	stack.push("4");
+
+	increasePlayer(4);//pass in the playerID (p3=3)
 }
 
 function undo() {
@@ -40,91 +50,64 @@ function undo() {
 		//to decrement based only on the topmost value on the stack
 
 		var topElement = stack.pop();
-		if (topElement == "1") {
-			var score = parseInt($("a#p1").text());
+
+		var score;
+		var cell;
+
+		//the only code that needs to change as you add incPN functions
+		if(topElement == "1") {
+			score = parseInt($("a#p1").text());
 			score = score - 1;
 			$("a#p1").text(score);
+			cell = "C4";
+		} else if (topElement == "2") {
+			score = parseInt($("a#p2").text());
+			score = score - 1;
+			$("a#p2").text(score);
+			cell = "C5";
+		} else if (topElement == "3") {
+			score = parseInt($("a#p1").text());
+			score = score - 1;
+			$("a#p1").text(score);
+			cell = "C10";
+		} else if (topElement == "4") {
+			score = parseInt($("a#p2").text());
+			score = score - 1;
+			$("a#p2").text(score);
+			cell = "C11";
+		}
 
-			//api code
-			var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
-			var sheetName = "main";
-			var pubKey = "AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0";
+		//api code
+		var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
+		var sheetName = "main";
+		var pubKey = "AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0";
 
-			var cell = "C4";
+		var range = sheetName + "!" + cell + ":" + cell;//main!B4:B4
+		var postURL = baseURL + "/values/" + range;
 
-			var range = sheetName + "!" + cell + ":" + cell;//main!B4:B4
-			var postURL = baseURL + "/values/" + range;
+		var valueAsPayload = {
+			"range": range,
+			"majorDimension": "ROWS",
+			"values": [
+			[score]
+			],
+		}
 
-			var valueAsPayload = {
-				"range": range,
-				"majorDimension": "ROWS",
-				"values": [
-				[score]
-				],
-			}
+		//Use gapi.client.request(args) function
+		var request = gapi.client.request({
+			'method': 'PUT',
+			'path': postURL,
+			'params': {
+				'key': pubKey,
+				'valueInputOption': 'USER_ENTERED'
+		},
+		'body': valueAsPayload
+		});
 
-			//Use gapi.client.request(args) function
-			var request = gapi.client.request({
-				'method': 'PUT',
-				'path': postURL,
-				'params': {
-					'key': pubKey,
-					'valueInputOption': 'USER_ENTERED'
-			},
-			'body': valueAsPayload
-			});
-
-    		//Execute the API request.
-    		request.execute(function(response) {
-    			console.log(response);
-    		});
-
-
-} else if (topElement == "2") {
-	var score = parseInt($("a#p2").text());
-	score = score - 1;
-	$("a#p2").text(score);
-
-			//api code
-			var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
-			var sheetName = "main";
-			var pubKey = "AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0";
-
-			var cell = "C5";
-
-			var range = sheetName + "!" + cell + ":" + cell;//main!B4:B4
-			var postURL = baseURL + "/values/" + range;
-
-			var valueAsPayload = {
-				"range": range,
-				"majorDimension": "ROWS",
-				"values": [
-				[score]
-				],
-			}
-
-			//Use gapi.client.request(args) function
-			var request = gapi.client.request({
-				'method': 'PUT',
-				'path': postURL,
-				'params': {
-					'key': pubKey,
-					'valueInputOption': 'USER_ENTERED'
-			},
-			'body': valueAsPayload
-			});
-
-    		//Execute the API request.
-    		request.execute(function(response) {
-    			console.log(response);
-    		});
-} else {
-		//error...
-		console.log("error in popping stack");
-	}
-} else {
-	console.log("the score's 0-0, can't undo");
-}
+    	//Execute the API request.
+    	request.execute(function(response) {
+    		console.log(response);
+    	});
 }
 
 function isSetOver(matchID) {

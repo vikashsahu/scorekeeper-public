@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-<!--
+<head>
+  <!--
 Params that need to change based on the player:
 1. matchID in sendForm(matchID), <form action=...>
 2. matchID in isSetOver(1) in <script>$("a#p1").click
@@ -8,9 +9,8 @@ Params that need to change based on the player:
 4. matchID in reset(1) in <script>$("a#reset").click
 4. matchID in reset(1) in <script>$("a#start").click
   -->
-<head>
   <meta charset="UTF-8">
-  <title>Kai</title>
+  <title>Aziz</title>
   <link rel = "stylesheet" type = "text/css" href = "styles/old.css" />
   <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
   <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -39,7 +39,7 @@ Params that need to change based on the player:
 
 <hr>
 <!-- form: time, event, table, opponent -->
-<form action="javascript:sendForm(1);"><!--matchID passed as param-->
+<form action="javascript:sendForm(2);"><!--matchID passed as param-->
   Time:<br>
   <input type="text" name="time" id="time">
   <br>
@@ -72,26 +72,26 @@ Params that need to change based on the player:
 <script>
 $("a#p1").click(function() {//on click, 1. increase the score, 2. call isSetOver
   incP1Temp();
-  isSetOver(1);//isSetOver(matchID); change this param based on match
+  isSetOver(2);//isSetOver(matchID); change this param based on match
 });
 </script>
 
 <script>
 $("a#p2").click(function() {
   incP2Temp();
-  isSetOver(1);//isSetOver(matchID); change this param based on match. matchID, not playerID!
+  isSetOver(2);//isSetOver(matchID); change this param based on match. matchID, not playerID!
 });
 </script>
 
 <script>
 $("a#reset").click(function() {
-  reset(1);//reset(matchID);
+  reset(2);//reset(matchID);
 });
 </script>
 
 <script>
 $("a#start").click(function() {
-  reset(1);//reset(matchID);
+  reset(2);//reset(matchID);
 });
 </script>
 

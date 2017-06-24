@@ -26,7 +26,6 @@ function incP2Temp() {
 
 //TODO: will need to make one of these functions for each player you support
 function incP3() {
-	//log "1" on the stack for undo
 	//push the id of the player (p3 = 3).
 	stack.push("3");
 
@@ -34,14 +33,69 @@ function incP3() {
 }
 
 function incP4() {
-	//log "1" on the stack for undo
 	//push the id of the player (p3 = 3).
 	stack.push("4");
 
 	increasePlayer(4);//pass in the playerID (p3=3)
 }
 
-//currently supports: player 1, 2, 3, 4
+function incP5() {
+	//push the id of the player (p3 = 3).
+	stack.push("5");
+
+	increasePlayer(5);//pass in the playerID (p3=3)
+}
+
+function incP6() {
+	//push the id of the player (p3 = 3).
+	stack.push("6");
+
+	increasePlayer(6);//pass in the playerID (p3=3)
+}
+
+function incP7() {
+	//push the id of the player (p3 = 3).
+	stack.push("7");
+
+	increasePlayer(7);//pass in the playerID (p3=3)
+}
+
+function incP8() {
+	//push the id of the player (p3 = 3).
+	stack.push("8");
+
+	increasePlayer(8);//pass in the playerID (p3=3)
+}
+
+function incP9() {
+	//push the id of the player (p3 = 3).
+	stack.push("9");
+
+	increasePlayer(9);//pass in the playerID (p3=3)
+}
+
+function incP10() {
+	//push the id of the player (p3 = 3).
+	stack.push("10");
+
+	increasePlayer(10);//pass in the playerID (p3=3)
+}
+
+function incP11() {
+	//push the id of the player (p3 = 3).
+	stack.push("11");
+
+	increasePlayer(11);//pass in the playerID (p3=3)
+}
+
+function incP12() {
+	//push the id of the player (p3 = 3).
+	stack.push("12");
+
+	increasePlayer(12);//pass in the playerID (p3=3)
+}
+
+//currently supports: player 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
 function undo() {
 	if (stack.length > 0) {
 
@@ -76,6 +130,46 @@ function undo() {
 			score = score - 1;
 			$("a#p2").text(score);
 			cell = "C11";
+		} else if (topElement == "5") {
+			score = parseInt($("a#p1").text());
+			score = score - 1;
+			$("a#p1").text(score);
+			cell = "C16";
+		} else if (topElement == "6") {
+			score = parseInt($("a#p2").text());
+			score = score - 1;
+			$("a#p2").text(score);
+			cell = "C17";
+		} else if (topElement == "7") {
+			score = parseInt($("a#p1").text());
+			score = score - 1;
+			$("a#p1").text(score);
+			cell = "C22";
+		} else if (topElement == "8") {
+			score = parseInt($("a#p2").text());
+			score = score - 1;
+			$("a#p2").text(score);
+			cell = "C23";
+		} else if (topElement == "9") {
+			score = parseInt($("a#p1").text());
+			score = score - 1;
+			$("a#p1").text(score);
+			cell = "C28";
+		} else if (topElement == "10") {
+			score = parseInt($("a#p2").text());
+			score = score - 1;
+			$("a#p2").text(score);
+			cell = "C29";
+		} else if (topElement == "11") {
+			score = parseInt($("a#p1").text());
+			score = score - 1;
+			$("a#p1").text(score);
+			cell = "C34";
+		} else if (topElement == "12") {
+			score = parseInt($("a#p2").text());
+			score = score - 1;
+			$("a#p2").text(score);
+			cell = "C35";
 		}
 
 		//api code
@@ -170,7 +264,7 @@ function resetMatchView() {
 	stack = [];//clear the stack
 }
 
-//current for matchID = 1, 2
+//current for matchID = 1, 2, 3, 4, 5, 6
 function zeroOutGameScore(matchID) {
 	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
 	var sheetName = "main";
@@ -181,6 +275,14 @@ function zeroOutGameScore(matchID) {
 		valueRange = "C4:C5";
 	} else if (matchID == 2) {
 		valueRange = "C10:C11";
+	} else if (matchID == 3) {
+		valueRange = "C16:C17";
+	} else if (matchID == 4) {
+		valueRange = "C22:C23";
+	} else if (matchID == 5) {
+		valueRange = "C28:C29";
+	} else if (matchID == 6) {
+		valueRange = "C34:C35";
 	}
 
 	var range = sheetName + "!" + valueRange;//main!B4:B5
@@ -211,7 +313,7 @@ function zeroOutGameScore(matchID) {
     	});
     }
 
-//current for matchID = 1, 2
+//current for matchID = 1, 2, 3, 4, 5, 6
 //resets current game score and sets
 //Match 1: Player 1, Player 2
 function reset(matchID) {
@@ -232,6 +334,18 @@ function reset(matchID) {
 	} else if (matchID == 2) {
 		rangeOne = "B10";
 		rangeTwo = "C11";
+	} else if (matchID == 3) {
+		rangeOne = "B16";
+		rangeTwo = "C17";
+	} else if (matchID == 4) {
+		rangeOne = "B22";
+		rangeTwo = "C23";
+	} else if (matchID == 5) {
+		rangeOne = "B28";
+		rangeTwo = "C29";
+	} else if (matchID == 6) {
+		rangeOne = "B34";
+		rangeTwo = "C35";
 	}
 
 	var range = sheetName + "!" + rangeOne + ":" + rangeTwo;//main!B4:B5
@@ -264,7 +378,7 @@ function reset(matchID) {
     	});
 }//end function reset
 
-//current for matchID=1, 2
+//current for matchID=1, 2, 3, 4, 5, 6
 //note that playerID should always be 1 or 2
 function increaseSet(matchID, playerID, setScore) {
 	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
@@ -286,6 +400,38 @@ function increaseSet(matchID, playerID, setScore) {
 			cell = "B10";
 		} else if (playerID==2) {
 			cell = "B11";
+		} else {
+			console.log("error in increaseSet, matchid=2");
+		}
+	} else if (matchID == 3) {
+		if (playerID==1) {
+			cell = "B16";
+		} else if (playerID==2) {
+			cell = "B17";
+		} else {
+			console.log("error in increaseSet, matchid=3");
+		}
+	} else if (matchID == 4) {
+		if (playerID==1) {
+			cell = "B22";
+		} else if (playerID==2) {
+			cell = "B23";
+		} else {
+			console.log("error in increaseSet, matchid=4");
+		}
+	} else if (matchID == 5) {
+		if (playerID==1) {
+			cell = "B28";
+		} else if (playerID==2) {
+			cell = "B29";
+		} else {
+			console.log("error in increaseSet, matchid=2");
+		}
+	} else if (matchID == 6) {
+		if (playerID==1) {
+			cell = "B34";
+		} else if (playerID==2) {
+			cell = "B35";
 		} else {
 			console.log("error in increaseSet, matchid=2");
 		}
@@ -319,7 +465,7 @@ function increaseSet(matchID, playerID, setScore) {
     });
 }
 
-//current for playerID = 1, 2, 3, 4
+//current for playerID = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
 //gets called by incP1, incP2, incP3, incP4, etc.
 //player ID = 1, 2, 3, 4...
 function increasePlayer(playerID) {
@@ -340,6 +486,22 @@ function increasePlayer(playerID) {
 		cell = "C10";
 	} else if (playerID == 4) {
 		cell = "C11";
+	} else if (playerID == 5) {
+		cell = "C16";
+	} else if (playerID == 6) {
+		cell = "C17";
+	} else if (playerID == 7) {
+		cell = "C22";
+	} else if (playerID == 8) {
+		cell = "C23";
+	} else if (playerID == 9) {
+		cell = "C28";
+	} else if (playerID == 10) {
+		cell = "C29";
+	} else if (playerID == 11) {
+		cell = "C34";
+	} else if (playerID == 12) {
+		cell = "C35";
 	}
 
 	var range = sheetName + "!" + cell + ":" + cell;//main!B4:B4
@@ -381,7 +543,7 @@ function increasePlayer(playerID) {
 
  }//end function
 
-//current for matchID = 1, 2
+//current for matchID = 1, 2, 3, 4, 5, 6
 function sendForm(matchID) {
 
 	var formAsArrayOfObjects = $("form").serializeArray();
@@ -402,6 +564,14 @@ function sendForm(matchID) {
 		valueRange = "A2:D2";
 	} else if (matchID == 2) {
 		valueRange = "A8:D8";
+	} else if (matchID == 3) {
+		valueRange = "A14:D14";
+	} else if (matchID == 4) {
+		valueRange = "A20:D20";
+	} else if (matchID == 5) {
+		valueRange = "A26:D26";
+	} else if (matchID == 6) {
+		valueRange = "A32:D32";
 	}
 
 	var range = sheetName + "!" + valueRange;//main!A2:D2

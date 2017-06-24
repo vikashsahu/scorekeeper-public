@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+Params that need to change based on the player:
+1. matchID in sendForm(matchID), <form action=...>
+2. matchID in isSetOver(1) in <script>$("a#p1").click
+3. matchID in isSetOver(2) in <script>$("a#p1").click
+4. matchID in reset(1) in <script>$("a#reset").click
+5. matchID in reset(1) in <script>$("a#start").click
+
+Change the incP[n] function based on the player ids
+  -->
+  <meta charset="UTF-8">
+  <title>Tina</title>
+  <link rel = "stylesheet" type = "text/css" href = "styles/old.css" />
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script src="js/my.js"></script>
+</head>
+<body>
+ <div class="container">
+  <section class="main">
+    <div style="width:10%;float:left;font-size:50px" id="p1Sets">0</div>
+    <div style="width:80%;text-align:center;float:left"><a href="#" class="fill-div" id="p1">0</a></div>
+    <div style="width:10%;float:left;font-size:50px">Tina</div>
+  </section>
+  <section class="secondary">
+    <a href="#" class="fill-div" id="undo">undo</a>
+  </section>
+  <section class="secondary">
+    <a href="#" class="fill-div" id="start">Start!</a>
+  </section>
+  <section class="secondary">
+    <a href="#" class="fill-div" id="reset">reset</a>
+  </section>
+  <section class="main">
+    <div style="width:10%;float:left;font-size:50px" id="p2Sets">0</div>
+    <div style="width:80%;text-align:center;float:left"><a href="#" class="fill-div" id="p2">0</a></div>
+    <div style="width:10%;float:left;font-size:20px">Opponent</div>
+  </section>
+</div>
+
+<hr>
+<!-- form: time, event, table, opponent -->
+<form action="javascript:sendForm(4);"><!--matchID passed as param-->
+  Time:<br>
+  <input type="text" name="time" id="time">
+  <br>
+  Event:<br>
+  <input type="text" name="event" id="event">
+  <br>
+  Table:<br>
+  <input type="text" name="table" id="table">
+  <br>
+  Opponent:<br>
+  <input type="text" name="opponent" id="opponent">
+  <br><br>
+  <input type="submit" value="Submit">
+</form>
+<!-- end form section -->
+
+<hr>
+
+<button id="sign-in-or-out-button" style="margin-left: 25px">Sign In/Authorize</button>
+<button id="revoke-access-button" style="display: none; margin-left: 25px">Revoke access</button>
+<div id="auth-status" style="display: inline; padding-left: 25px"></div>
+
+<!--Begin Script Section-->
+<!--For Google oAuth Stuff-->
+<script async defer src="https://apis.google.com/js/api.js" 
+  onload="this.onload=function(){};handleClientLoad()" 
+  onreadystatechange="if (this.readyState === 'complete') this.onload()">
+</script>
+
+<script>
+$("a#p1").click(function() {//on click, 1. increase the score, 2. call isSetOver
+  incP7();//need to change the number present in this function based on playerID
+  isSetOver(4);//isSetOver(matchID); change this param based on match
+});
+</script>
+
+<script>
+$("a#p2").click(function() {
+  incP8();////need to change the number present in this function based on playerID
+  isSetOver(4);//isSetOver(matchID); change this param based on match. matchID, not playerID!
+});
+</script>
+
+<script>
+$("a#reset").click(function() {
+  reset(4);//reset(matchID);
+});
+</script>
+
+<script>
+$("a#start").click(function() {
+  reset(4);//reset(matchID);
+});
+</script>
+
+<script>
+$("a#undo").click(function() {
+  undo();
+});
+</script>
+<!--End Script Section-->
+</body>
+</html>

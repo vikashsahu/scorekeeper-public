@@ -386,7 +386,7 @@ function resetMatchView() {
 	stack = [];//clear the stack
 }
 
-//current for matchID = 1, 2, 3, 4, 5, 6
+//current for matchID = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
 function zeroOutGameScore(matchID) {
 	/*var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
 	var sheetName = "main";
@@ -408,6 +408,16 @@ function zeroOutGameScore(matchID) {
 		valueRange = "C28:C29";
 	} else if (matchID == 6) {
 		valueRange = "C34:C35";
+	} else if (matchID == 7) {
+		valueRange = "C40:C41";
+	} else if (matchID == 8) {
+		valueRange = "C46:C47";
+	} else if (matchID == 9) {
+		valueRange = "C52:C53";
+	} else if (matchID == 10) {
+		valueRange = "C58:C59";
+	} else if (matchID == 11) {
+		valueRange = "C64:C65";
 	}
 
 	var range = sheetName + "!" + valueRange;//main!B4:B5

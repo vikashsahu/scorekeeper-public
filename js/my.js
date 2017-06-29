@@ -765,7 +765,7 @@ function increasePlayer(playerID) {
 
  }//end function
 
-//current for matchID = 1, 2, 3, 4, 5, 6
+//current for matchID = 1, 2, 3, 4, 5, 6 [7, 8, 9, 10, 11]
 function sendForm(matchID) {
 
 	var formAsArrayOfObjects = $("form").serializeArray();
@@ -798,6 +798,16 @@ function sendForm(matchID) {
 		valueRange = "A26:D26";
 	} else if (matchID == 6) {
 		valueRange = "A32:D32";
+	} else if (matchID == 7) {
+		valueRange = "A38:D38";
+	} else if (matchID == 8) {
+		valueRange = "A44:D44";
+	} else if (matchID == 9) {
+		valueRange = "A50:D50";
+	} else if (matchID == 10) {
+		valueRange = "A56:D56";
+	} else if (matchID == 11) {
+		valueRange = "A62:D62";
 	}
 
 	var range = sheetName + "!" + valueRange;//main!A2:D2

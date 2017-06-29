@@ -532,7 +532,7 @@ function reset(matchID) {
     	});
 }//end function reset
 
-//current for matchID=1, 2, 3, 4, 5, 6
+//current for matchID=1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
 //note that playerID should always be 1 or 2
 function increaseSet(matchID, playerID, setScore) {
 	/*var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
@@ -583,7 +583,7 @@ function increaseSet(matchID, playerID, setScore) {
 		} else if (playerID==2) {
 			cell = "B29";
 		} else {
-			console.log("error in increaseSet, matchid=2");
+			console.log("error in increaseSet, matchid=5");
 		}
 	} else if (matchID == 6) {
 		if (playerID==1) {
@@ -591,7 +591,47 @@ function increaseSet(matchID, playerID, setScore) {
 		} else if (playerID==2) {
 			cell = "B35";
 		} else {
-			console.log("error in increaseSet, matchid=2");
+			console.log("error in increaseSet, matchid=6");
+		}
+	} else if (matchID == 7) {
+		if (playerID==1) {
+			cell = "B40";
+		} else if (playerID==2) {
+			cell = "B41";
+		} else {
+			console.log("error in increaseSet, matchid=7");
+		}
+	} else if (matchID == 8) {
+		if (playerID==1) {
+			cell = "B46";
+		} else if (playerID==2) {
+			cell = "B47";
+		} else {
+			console.log("error in increaseSet, matchid=8");
+		}
+	} else if (matchID == 9) {
+		if (playerID==1) {
+			cell = "B52";
+		} else if (playerID==2) {
+			cell = "B53";
+		} else {
+			console.log("error in increaseSet, matchid=9");
+		}
+	} else if (matchID == 10) {
+		if (playerID==1) {
+			cell = "B58";
+		} else if (playerID==2) {
+			cell = "B59";
+		} else {
+			console.log("error in increaseSet, matchid=10");
+		}
+	} else if (matchID == 11) {
+		if (playerID==1) {
+			cell = "B64";
+		} else if (playerID==2) {
+			cell = "B65";
+		} else {
+			console.log("error in increaseSet, matchid=11");
 		}
 	}
 

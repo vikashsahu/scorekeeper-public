@@ -165,7 +165,7 @@ function incP22() {
 	increasePlayer(22);//pass in the playerID (p3=3)
 }
 
-//currently supports: player 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+//currently supports: player 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22
 function undo() {
 	if (stack.length > 0) {
 
@@ -240,6 +240,56 @@ function undo() {
 			score = score - 1;
 			$("a#p2").text(score);
 			cell = "C35";
+		} else if (topElement == "13") {
+			score = parseInt($("a#p1").text());
+			score = score - 1;
+			$("a#p1").text(score);
+			cell = "C40";
+		} else if (topElement == "14") {
+			score = parseInt($("a#p2").text());
+			score = score - 1;
+			$("a#p2").text(score);
+			cell = "C41";
+		} else if (topElement == "15") {
+			score = parseInt($("a#p1").text());
+			score = score - 1;
+			$("a#p1").text(score);
+			cell = "C46";
+		} else if (topElement == "16") {
+			score = parseInt($("a#p2").text());
+			score = score - 1;
+			$("a#p2").text(score);
+			cell = "C47";
+		} else if (topElement == "17") {
+			score = parseInt($("a#p1").text());
+			score = score - 1;
+			$("a#p1").text(score);
+			cell = "C52";
+		} else if (topElement == "18") {
+			score = parseInt($("a#p2").text());
+			score = score - 1;
+			$("a#p2").text(score);
+			cell = "C53";
+		} else if (topElement == "19") {
+			score = parseInt($("a#p1").text());
+			score = score - 1;
+			$("a#p1").text(score);
+			cell = "C58";
+		} else if (topElement == "20") {
+			score = parseInt($("a#p2").text());
+			score = score - 1;
+			$("a#p2").text(score);
+			cell = "C59";
+		} else if (topElement == "21") {
+			score = parseInt($("a#p1").text());
+			score = score - 1;
+			$("a#p1").text(score);
+			cell = "C64";
+		} else if (topElement == "22") {
+			score = parseInt($("a#p2").text());
+			score = score - 1;
+			$("a#p2").text(score);
+			cell = "C65";
 		}
 
 		//api code

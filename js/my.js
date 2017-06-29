@@ -663,7 +663,7 @@ function increaseSet(matchID, playerID, setScore) {
     });
 }
 
-//current for playerID = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+//current for playerID = 1-22
 //gets called by incP1, incP2, incP3, incP4, etc.
 //player ID = 1, 2, 3, 4...
 function increasePlayer(playerID) {
@@ -704,6 +704,26 @@ function increasePlayer(playerID) {
 		cell = "C34";
 	} else if (playerID == 12) {
 		cell = "C35";
+	} else if (playerID == 13) {
+		cell = "C40";
+	} else if (playerID == 14) {
+		cell = "C41";
+	} else if (playerID == 15) {
+		cell = "C46";
+	} else if (playerID == 16) {
+		cell = "C47";
+	} else if (playerID == 17) {
+		cell = "C52";
+	} else if (playerID == 18) {
+		cell = "C53";
+	} else if (playerID == 19) {
+		cell = "C58";
+	} else if (playerID == 20) {
+		cell = "C59";
+	} else if (playerID == 21) {
+		cell = "C64";
+	} else if (playerID == 22) {
+		cell = "C65";
 	}
 
 	var range = sheetName + "!" + cell + ":" + cell;//main!B4:B4

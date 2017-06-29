@@ -95,6 +95,76 @@ function incP12() {
 	increasePlayer(12);//pass in the playerID (p3=3)
 }
 
+function incP13() {
+	//push the id of the player (p3 = 3).
+	stack.push("13");
+
+	increasePlayer(13);//pass in the playerID (p3=3)
+}
+
+function incP14() {
+	//push the id of the player (p3 = 3).
+	stack.push("14");
+
+	increasePlayer(14);//pass in the playerID (p3=3)
+}
+
+function incP15() {
+	//push the id of the player (p3 = 3).
+	stack.push("15");
+
+	increasePlayer(15);//pass in the playerID (p3=3)
+}
+
+function incP16() {
+	//push the id of the player (p3 = 3).
+	stack.push("16");
+
+	increasePlayer(16);//pass in the playerID (p3=3)
+}
+
+function incP17() {
+	//push the id of the player (p3 = 3).
+	stack.push("17");
+
+	increasePlayer(17);//pass in the playerID (p3=3)
+}
+
+function incP18() {
+	//push the id of the player (p3 = 3).
+	stack.push("18");
+
+	increasePlayer(18);//pass in the playerID (p3=3)
+}
+
+function incP19() {
+	//push the id of the player (p3 = 3).
+	stack.push("19");
+
+	increasePlayer(19);//pass in the playerID (p3=3)
+}
+
+function incP20() {
+	//push the id of the player (p3 = 3).
+	stack.push("20");
+
+	increasePlayer(20);//pass in the playerID (p3=3)
+}
+
+function incP21() {
+	//push the id of the player (p3 = 3).
+	stack.push("21");
+
+	increasePlayer(21);//pass in the playerID (p3=3)
+}
+
+function incP22() {
+	//push the id of the player (p3 = 3).
+	stack.push("22");
+
+	increasePlayer(22);//pass in the playerID (p3=3)
+}
+
 //currently supports: player 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
 function undo() {
 	if (stack.length > 0) {

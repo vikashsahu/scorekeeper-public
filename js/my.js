@@ -448,7 +448,7 @@ function zeroOutGameScore(matchID) {
     	});
     }
 
-//current for matchID = 1, 2, 3, 4, 5, 6
+//current for matchID = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
 //resets current game score and sets
 //Match 1: Player 1, Player 2
 function reset(matchID) {
@@ -485,6 +485,21 @@ function reset(matchID) {
 	} else if (matchID == 6) {
 		rangeOne = "B34";
 		rangeTwo = "C35";
+	} else if (matchID == 7) {
+		rangeOne = "B40";
+		rangeTwo = "C41";
+	} else if (matchID == 8) {
+		rangeOne = "B46";
+		rangeTwo = "C47";
+	} else if (matchID == 9) {
+		rangeOne = "B52";
+		rangeTwo = "C53";
+	} else if (matchID == 10) {
+		rangeOne = "B58";
+		rangeTwo = "C59";
+	} else if (matchID == 11) {
+		rangeOne = "B64";
+		rangeTwo = "C65";
 	}
 
 	var range = sheetName + "!" + rangeOne + ":" + rangeTwo;//main!B4:B5

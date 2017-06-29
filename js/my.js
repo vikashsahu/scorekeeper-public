@@ -765,7 +765,7 @@ function increasePlayer(playerID) {
 
  }//end function
 
-//current for matchID = 1, 2, 3, 4, 5, 6 [7, 8, 9, 10, 11]
+//current for matchID = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
 function sendForm(matchID) {
 
 	var formAsArrayOfObjects = $("form").serializeArray();

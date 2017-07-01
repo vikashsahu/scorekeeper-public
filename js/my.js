@@ -378,6 +378,7 @@ function isSetOver(matchID) {
 //current for all matches. won't ever need modification
 //sets both scores and set counts to zero, on the view only
 //and clears the stack
+//TODO: resetting a match view should include clearing the form view!
 function resetMatchView() {
 	$("a#p1").text("0");//reset p1 score
 	$("a#p2").text("0");//reset p2 score
@@ -387,6 +388,9 @@ function resetMatchView() {
 
 	//change opponent name in view back to "opponent"
 	$("#opponent").text("Opponent");
+
+	//clear the textareas of the form, on the view
+	$("form").find("input[type=text], textarea").val("");
 }
 
 //current for matchID = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11

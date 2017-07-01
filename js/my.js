@@ -384,6 +384,9 @@ function resetMatchView() {
 	$("#p1Sets").text("0");//reset p1sets
 	$("#p2Sets").text("0");//reset p2sets
 	stack = [];//clear the stack
+
+	//change opponent name in view back to "opponent"
+	$("#opponent").text("Opponent");
 }
 
 //current for matchID = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11

@@ -391,6 +391,9 @@ function resetMatchView() {
 
 	//clear the textareas of the form, on the view
 	$("form").find("input[type=text], textarea").val("");
+
+	//clear the "start" button area (which has table/time/event info)
+	$("a#start").text("");
 }
 
 //current for matchID = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
@@ -784,6 +787,9 @@ function sendForm(matchID) {
 
 	//set the html to be the opponent's name:
 	$("#opponent").text(opponent.toString());
+
+	//set the table/event/time info in the "start" a href
+	$("a#start").text(time.toString() + " | table " + table.toString + " | " + eventName.toString());
 
  	//console.log(time + " " + eventName + " " + table + " " + opponent);
 

@@ -8,13 +8,13 @@ Params that need to change based on the player:
 3. matchID in isSetOver(2) in <script>$("a#p1").click
 4. matchID in reset(1) in <script>$("a#reset").click
 4. matchID in reset(1) in <script>$("a#start").click
-  -->
-  <meta charset="UTF-8">
-  <title>Aziz</title>
-  <link rel = "stylesheet" type = "text/css" href = "styles/old.css" />
-  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <script src="js/my.js"></script>
+-->
+<meta charset="UTF-8">
+<title>Aziz</title>
+<link rel = "stylesheet" type = "text/css" href = "styles/old.css" />
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="js/my.js"></script>
 </head>
 <body>
  <div class="container">
@@ -26,8 +26,8 @@ Params that need to change based on the player:
   <section class="secondary">
     <a href="#" class="fill-div" id="undo">undo</a>
   </section>
-  <section class="secondary">
-    <a href="#" class="fill-div" id="start">Start!</a>
+  <section class="tertiary">
+    <a class="fill-div" id="start"></a>
   </section>
   <section class="secondary">
     <a href="#" class="fill-div" id="reset">reset</a>
@@ -67,8 +67,8 @@ Params that need to change based on the player:
 <!--Begin Script Section-->
 <!--For Google oAuth Stuff-->
 <script async defer src="https://apis.google.com/js/api.js" 
-  onload="this.onload=function(){};handleClientLoad()" 
-  onreadystatechange="if (this.readyState === 'complete') this.onload()">
+onload="this.onload=function(){};handleClientLoad()" 
+onreadystatechange="if (this.readyState === 'complete') this.onload()">
 </script>
 
 <script>

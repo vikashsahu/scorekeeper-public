@@ -454,6 +454,7 @@ function zeroOutGameScore(matchID) {
 //current for matchID = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
 //resets current game score and sets
 //Match 1: Player 1, Player 2
+//TODO: resetting a match should also clear out the 4 cells in the google sheet
 function reset(matchID) {
 	/*var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
 	var sheetName = "main";

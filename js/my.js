@@ -375,7 +375,7 @@ function isSetOver(matchID) {
 	}
 }
 
-//current for all matches. won't ever need modification
+//current for all matches. won't ever need modification as you add players
 //sets both scores and set counts to zero, on the view only
 //and clears the stack
 //resetting a match view also clears the form textareas

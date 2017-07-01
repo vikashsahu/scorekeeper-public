@@ -774,6 +774,9 @@ function sendForm(matchID) {
 	var table = formAsArrayOfObjects[2].value;
 	var opponent = formAsArrayOfObjects[3].value;
 
+	//set the html to be the opponent's name:
+	$("#opponent").text(opponent.toString());
+
  	//console.log(time + " " + eventName + " " + table + " " + opponent);
 
 /* 	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";

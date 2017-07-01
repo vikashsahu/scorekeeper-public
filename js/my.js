@@ -789,7 +789,7 @@ function sendForm(matchID) {
 	$("#opponent").text(opponent.toString());
 
 	//set the table/event/time info in the "start" a href
-	$("a#start").text(time.toString() + " | table " + table.toString + " | " + eventName.toString());
+	$("a#start").text(time.toString() + " | table " + table.toString() + " | " + eventName.toString());
 
  	//console.log(time + " " + eventName + " " + table + " " + opponent);
 

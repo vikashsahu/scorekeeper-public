@@ -2,6 +2,23 @@
 //the array that we'll use for undo
 var stack = [];
 
+//create a mapping of matchID to row for time/event/table/opponent
+//the Columns will always be A-D, only the row number changes
+//will need to add to this map as more players are added
+var matchIdToMatchInfoRow = {
+	1 : 2,
+	2 : 8,
+	3 : 14,
+	4 : 20,
+	5 : 26,
+	6 : 32,
+	7 : 38,
+	8 : 44,
+	9 : 50,
+	10 : 56,
+	11 : 62
+};
+
 //temporary function that only increases
 //the number on the frontend
 //without making an api request
@@ -525,7 +542,7 @@ function reset(matchID) {
 		[0, 0],
 		[0, 0]
 		],
-	}
+	};
 
 		//Use gapi.client.request(args) function
 		var request = gapi.client.request({
@@ -542,6 +559,36 @@ function reset(matchID) {
     	request.execute(function(response) {
     		console.log(response);
     	});
+
+    	//second request, which clears the row of matchInfo (4 cells) in the sheet
+    	//columns are always A-D, row is matchIdToMatchInfoRow[matchID]
+    	//range should be of the form main!A20:D20
+    	var rowOfMatchInfo = matchIdToMatchInfoRow[matchID];//will be a number
+    	var secondRequestRange = sheetName + "!" + "A" + rowOfMatchInfo + ":" + "D" + rowOfMatchInfo;
+    	var secondRequestPostURL = baseURL + "/values/" + secondRequestRange;
+
+    	var secondRequestValueAsPayload = {
+    		"range": secondRequestRange,
+    		"majorDimension": "ROWS",
+    		"values": [
+    		["", "", "", ""]
+    		],
+    	};
+
+    	var secondRequest = gapi.client.request({
+    		'method': 'PUT',
+    		'path': secondRequestPostURL,
+    		'params' : {
+    			'key': pubKey,
+    			'valueInputOption': 'USER_ENTERED'
+    		},
+    		'body': secondRequestValueAsPayload
+    	});
+
+    	secondRequest.execute(function(response) {
+    		console.log(response);
+    	});
+
 }//end function reset
 
 //current for matchID=1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
@@ -798,9 +845,9 @@ function sendForm(matchID) {
  	var sheetName = "main";
  	var pubKey = "AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0";*/
 
-	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1vA2PrRT0JICtMr1ULfbN_jhbBsMDSbdsLCk0xRzdaQE";
-	var sheetName = "main";
-	var pubKey = "AIzaSyC9yqorompBJBsu0GBzsGwRd3AeUrTpu5Y";
+ 	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1vA2PrRT0JICtMr1ULfbN_jhbBsMDSbdsLCk0xRzdaQE";
+ 	var sheetName = "main";
+ 	var pubKey = "AIzaSyC9yqorompBJBsu0GBzsGwRd3AeUrTpu5Y";
 
  	var valueRange;
 

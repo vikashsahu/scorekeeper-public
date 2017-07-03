@@ -345,6 +345,21 @@ function undo() {
     }
 }
 
+//returns true if the set is over, false otherwise
+function isSetOverReturnsBoolean() {
+	var p1Score = parseInt($("a#p1").text());
+	var p2Score = parseInt($("a#p2").text());
+
+	var scoreDiff = p1Score - p2Score;
+	var absoluteScoreDiff = Math.abs(scoreDiff);
+
+	if (((p1Score >= 11) || (p2Score >= 11)) && (absoluteScoreDiff >= 2)) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
 //current for all players. won't need any modifications as you add more players
 function isSetOver(matchID) {
 	var p1Score = parseInt($("a#p1").text());
@@ -798,30 +813,33 @@ function increasePlayer(playerID) {
 		$("a#p2").text(score);//set value on the frontend
 	}
 
-	var valueAsPayload = {
-		"range": range,
-		"majorDimension": "ROWS",
-		"values": [
-		[score]
-		],
+	if (isSetOverReturnsBoolean) {//return early to skip sending the POST for the final point
+		return;
+	} else {
+		var valueAsPayload = {
+			"range": range,
+			"majorDimension": "ROWS",
+			"values": [
+			[score]
+			],
+		}
+
+		//Use gapi.client.request(args) function
+		var request = gapi.client.request({
+			'method': 'PUT',
+			'path': postURL,
+			'params': {
+				'key': pubKey,
+				'valueInputOption': 'USER_ENTERED'
+			},
+			'body': valueAsPayload
+		});
+
+    	//Execute the API request.
+    	request.execute(function(response) {
+    		console.log(response);
+    	});
 	}
-
-	//Use gapi.client.request(args) function
-	var request = gapi.client.request({
-		'method': 'PUT',
-		'path': postURL,
-		'params': {
-			'key': pubKey,
-			'valueInputOption': 'USER_ENTERED'
-		},
-		'body': valueAsPayload
-	});
-
-    //Execute the API request.
-    request.execute(function(response) {
-    	console.log(response);
-    });
-
  }//end function
 
 //current for matchID = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11

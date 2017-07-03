@@ -813,7 +813,9 @@ function increasePlayer(playerID) {
 		$("a#p2").text(score);//set value on the frontend
 	}
 
-	if (isSetOverReturnsBoolean) {//return early to skip sending the POST for the final point
+	var setOver = isSetOverReturnsBoolean();
+
+	if (setOver) {//return early to skip sending the POST for the final point
 		return;
 	} else {
 		var valueAsPayload = {

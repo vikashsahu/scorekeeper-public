@@ -2,6 +2,9 @@
 //the array that we'll use for undo
 var stack = [];
 
+//array of requests to increase a player score that we'll use for batching
+var queuedIncreasePlayerOps = [];
+
 //create a mapping of matchID to row for time/event/table/opponent
 //the Columns will always be A-D, only the row number changes
 //will need to add to this map as more players are added
@@ -570,10 +573,15 @@ function reset(matchID) {
 			'body': valueAsPayload
 		});
 
-    	//Execute the API request.
-    	request.execute(function(response) {
-    		console.log(response);
-    	});
+    	//Execute the API request, after 1 + (random) seconds
+    	//we don't batch here because this happens after a match is over
+    	//so there will be a lull in requests for ~30 seconds to a minute
+    	var randomMS1 = Math.floor((Math.random() * 1000) + 1);
+    	setTimeout(function(){
+    		request.execute(function(response) {
+    			console.log(response);
+    		});
+    	}, 1000 + randomMS1);
 
     	//second request, which clears the row of matchInfo (4 cells) in the sheet
     	//columns are always A-D, row is matchIdToMatchInfoRow[matchID]
@@ -600,9 +608,15 @@ function reset(matchID) {
     		'body': secondRequestValueAsPayload
     	});
 
-    	secondRequest.execute(function(response) {
-    		console.log(response);
-    	});
+    	var randomMS2 = Math.floor((Math.random() * 1000) + 1);
+    	//Execute the API request, after 1 + (random) seconds
+    	//we don't batch here because this happens after a match is over
+    	//so there will be a lull in requests for ~30 seconds to a minute
+    	setTimeout(function() {
+    		secondRequest.execute(function(response) {
+    			console.log(response);
+    		});
+    	}, 1000 + randomMS2);
 
 }//end function reset
 
@@ -731,10 +745,15 @@ function increaseSet(matchID, playerID, setScore) {
 		'body': valueAsPayload
 	});
 
-    //Execute the API request.
-    request.execute(function(response) {
-    	console.log(response);
-    });
+    var randomMS1 = Math.floor((Math.random() * 1000) + 1);
+    //Execute the API request, after 1 + (random) seconds
+    //we don't batch here because this happens after a set ends
+    //so there will be a lull in requests for ~30 seconds to a minute
+    setTimeout(function(){
+    	request.execute(function(response) {
+    		console.log(response);
+    	});
+    }, 1000 + randomMS1);
 }
 
 //current for playerID = 1-22
@@ -837,10 +856,24 @@ function increasePlayer(playerID) {
 			'body': valueAsPayload
 		});
 
+		queuedIncreasePlayerOps.unshift(request);
+
+		//try to execute the most recent request after 2 + random seconds
+		//if one does not exist, do nothing
+		//if one does exist, execute it and clear the queue.
+		setTimeout(function(){
+			if (queuedIncreasePlayerOps.length > 0) {
+				queuedIncreasePlayerOps[0].execute(function(response) {
+					console.log(response);
+				});
+				queuedIncreasePlayerOps = [];
+			}
+		}, 2000 + Math.floor((Math.random() * 1000) + 1));
+
     	//Execute the API request.
-    	request.execute(function(response) {
+/*    	request.execute(function(response) {
     		console.log(response);
-    	});
+    	});*/
 	}
  }//end function
 

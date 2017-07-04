@@ -868,7 +868,7 @@ function increasePlayer(playerID) {
 				});
 				queuedIncreasePlayerOps = [];
 			}
-		}, 2000 + Math.floor((Math.random() * 1000) + 1));
+		}, 1000 + Math.floor((Math.random() * 1000) + 1));
 
     	//Execute the API request.
 /*    	request.execute(function(response) {

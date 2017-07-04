@@ -341,10 +341,19 @@ function undo() {
 			'body': valueAsPayload
 		});
 
-    	//Execute the API request.
-    	request.execute(function(response) {
-    		console.log(response);
-    	});
+		queuedIncreasePlayerOps.unshift(request);
+
+		//try to execute the most recent request after 2 + random seconds
+		//if one does not exist, do nothing
+		//if one does exist, execute it and clear the queue.
+		setTimeout(function(){
+			if (queuedIncreasePlayerOps.length > 0) {
+				queuedIncreasePlayerOps[0].execute(function(response) {
+					console.log(response);
+				});
+				queuedIncreasePlayerOps = [];
+			}
+		}, 1000 + Math.floor((Math.random() * 1000) + 1));
     }
 }
 

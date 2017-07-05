@@ -874,6 +874,7 @@ function increasePlayer(playerID) {
 			if (queuedIncreasePlayerOps.length > 0) {
 				queuedIncreasePlayerOps[0].execute(function(response) {
 					console.log(response);
+					console.log(response.result);
 				});
 				queuedIncreasePlayerOps = [];
 			}

@@ -872,14 +872,14 @@ function increasePlayer(playerID) {
 		//if one does exist, execute it and clear the queue.
 		setTimeout(function(){
 			if (queuedIncreasePlayerOps.length > 0) {
-				queuedIncreasePlayerOps[0].then(function(response) {
+				/*queuedIncreasePlayerOps[0].then(function(response) {
 					console.log(response.result);	
 				}, function(reason) {
 					console.error(reason.result.error.message);
-				});
-				/*queuedIncreasePlayerOps[0].execute(function(response) {
-					console.log(response);
 				});*/
+				queuedIncreasePlayerOps[0].execute(function(response) {
+					console.log(response);
+				});
 				queuedIncreasePlayerOps = [];
 			}
 		}, 1000 + Math.floor((Math.random() * 1000) + 1));
@@ -1082,11 +1082,10 @@ function setSigninStatus(isSignedIn) {
 		$('#auth-status').html('You have not authorized this app or you are ' +
 			'signed out.');
 
-		//temporarily commenting this out to force an error
-/*		//if the user is not auth-ed, hide the container
+		//if the user is not auth-ed, hide the container
 		$('.container').css('display', 'none');
 		//if the user is not auth-ed, hide the form
-		$('form').css('display', 'none');*/
+		$('form').css('display', 'none');
 	}
 }
 

@@ -1074,6 +1074,9 @@ function setSigninStatus(isSignedIn) {
 		$('#revoke-access-button').css('display', 'none');
 		$('#auth-status').html('You have not authorized this app or you are ' +
 			'signed out.');
+
+		//if the user is not auth-ed, hide the container
+		$('.container').css('display', 'none');
 	}
 }
 

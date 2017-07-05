@@ -1082,10 +1082,11 @@ function setSigninStatus(isSignedIn) {
 		$('#auth-status').html('You have not authorized this app or you are ' +
 			'signed out.');
 
-		//if the user is not auth-ed, hide the container
+		//temporarily commenting this out to force an error
+/*		//if the user is not auth-ed, hide the container
 		$('.container').css('display', 'none');
 		//if the user is not auth-ed, hide the form
-		$('form').css('display', 'none');
+		$('form').css('display', 'none');*/
 	}
 }
 

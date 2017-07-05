@@ -1068,6 +1068,8 @@ function setSigninStatus(isSignedIn) {
 
 		//display the scorekeeper view
 		$('.container').css('display', 'inline');
+		//display the form if auth-ed
+		$('form').css('display', 'block');
 	} else {
 		//TODO: update this block. When someone is not signed in, should hide div.container again
 		$('#sign-in-or-out-button').html('Sign In/Authorize');
@@ -1077,6 +1079,8 @@ function setSigninStatus(isSignedIn) {
 
 		//if the user is not auth-ed, hide the container
 		$('.container').css('display', 'none');
+		//if the user is not auth-ed, hide the form
+		$('form').css('display', 'none');
 	}
 }
 

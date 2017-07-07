@@ -760,7 +760,7 @@ function increaseSet(matchID, playerID, setScore) {
     //so there will be a lull in requests for ~30 seconds to a minute
     setTimeout(function(){
     	request.execute(function(response) {
-    		console.log(response);
+    		//console.log(response);
     	});
     }, 1000 + randomMS1);
 }
@@ -872,14 +872,14 @@ function increasePlayer(playerID) {
 		//if one does exist, execute it and clear the queue.
 		setTimeout(function(){
 			if (queuedIncreasePlayerOps.length > 0) {
-				/*queuedIncreasePlayerOps[0].then(function(response) {
-					console.log(response.result);	
+				queuedIncreasePlayerOps[0].then(function(response) {
+					//console.log(response.result);	
 				}, function(reason) {
 					console.error(reason.result.error.message);
-				});*/
-				queuedIncreasePlayerOps[0].execute(function(response) {
-					console.log(response);
 				});
+				/*queuedIncreasePlayerOps[0].execute(function(response) {
+					console.log(response);
+				});*/
 				queuedIncreasePlayerOps = [];
 			}
 		}, 1000 + Math.floor((Math.random() * 1000) + 1));

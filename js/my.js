@@ -313,9 +313,8 @@ function undo() {
 		}
 
 		//api code
-		//var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
-		//var pubKey = "AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0";
-		var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1vA2PrRT0JICtMr1ULfbN_jhbBsMDSbdsLCk0xRzdaQE";
+		//var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/SHEET_IDENTIFIER";
+		var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/[SHEET IDENTIFIER REMOVED]";
 		var sheetName = "main";
 		var pubKey = "AIzaSyC9yqorompBJBsu0GBzsGwRd3AeUrTpu5Y";
 
@@ -443,10 +442,10 @@ function resetMatchView() {
 
 //current for matchID = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
 function zeroOutGameScore(matchID) {
-	/*var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
+	/*var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/[SHEET IDENTIFIER]";
 	var sheetName = "main";
 	var pubKey = "AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0";*/
-	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1vA2PrRT0JICtMr1ULfbN_jhbBsMDSbdsLCk0xRzdaQE";
+	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/[SHEET IDENTIFIER REMOVED";
 	var sheetName = "main";
 	var pubKey = "AIzaSyC9yqorompBJBsu0GBzsGwRd3AeUrTpu5Y";
 	var valueRange;
@@ -508,11 +507,11 @@ function zeroOutGameScore(matchID) {
 //Match 1: Player 1, Player 2
 //TODO: resetting a match should also clear out the 4 cells in the google sheet
 function reset(matchID) {
-	/*var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
+	/*var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/[SHEET IDENTIFIER REMOVED]";
 	var sheetName = "main";
 	var pubKey = "AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0";*/
 
-	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1vA2PrRT0JICtMr1ULfbN_jhbBsMDSbdsLCk0xRzdaQE";
+	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/[SHEET IDENTIFIER REMOVED]";
 	var sheetName = "main";
 	var pubKey = "AIzaSyC9yqorompBJBsu0GBzsGwRd3AeUrTpu5Y";
 
@@ -632,10 +631,10 @@ function reset(matchID) {
 //current for matchID=1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
 //note that playerID should always be 1 or 2
 function increaseSet(matchID, playerID, setScore) {
-	/*var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
+	/*var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/[SHEET IDENTIFIER REMOVED]";
 	var sheetName = "main";
 	var pubKey = "AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0";*/
-	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1vA2PrRT0JICtMr1ULfbN_jhbBsMDSbdsLCk0xRzdaQE";
+	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/[SHEET IDENTIFIER REMOVED]";
 	var sheetName = "main";
 	var pubKey = "AIzaSyC9yqorompBJBsu0GBzsGwRd3AeUrTpu5Y";
 	
@@ -769,11 +768,11 @@ function increaseSet(matchID, playerID, setScore) {
 //gets called by incP1, incP2, incP3, incP4, etc.
 //player ID = 1, 2, 3, 4...
 function increasePlayer(playerID) {
-	/*var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
+	/*var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/[SHEET IDENTIFIER REMOVED]";
 	var sheetName = "main";
 	var pubKey = "AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0";*/
 
-	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1vA2PrRT0JICtMr1ULfbN_jhbBsMDSbdsLCk0xRzdaQE";
+	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/[SHEET IDENTIFIER REMOVED]";
 	var sheetName = "main";
 	var pubKey = "AIzaSyC9yqorompBJBsu0GBzsGwRd3AeUrTpu5Y";
 
@@ -912,7 +911,7 @@ function sendForm(matchID) {
  	var sheetName = "main";
  	var pubKey = "AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0";*/
 
- 	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1vA2PrRT0JICtMr1ULfbN_jhbBsMDSbdsLCk0xRzdaQE";
+ 	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/[SHEET IDENTIFIER REMOVED]";
  	var sheetName = "main";
  	var pubKey = "AIzaSyC9yqorompBJBsu0GBzsGwRd3AeUrTpu5Y";
 
@@ -972,7 +971,7 @@ function sendForm(matchID) {
 
 //shows how to make a GET and parse the result
 /*function increasePlayerWithGet(playerID) {
-	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/1Ipd_1vkwHtCQdj1zcNyzTRFil1CclmyufVqr4vIP8MI";
+	var baseURL = "https://sheets.googleapis.com/v4/spreadsheets/[SHEET IDENTIFIER]";
 	var sheetName = "main";
 	var pubKey = "AIzaSyAsmkXes_MzqYAjAO_J9gooiwolUoZl5M0";
 
@@ -1022,7 +1021,7 @@ function initClient() {
     // Get API key and client ID from API Console.
     // 'scope' field specifies space-delimited list of access scopes.
     gapi.client.init({
-    	'apiKey': 'AIzaSyC9yqorompBJBsu0GBzsGwRd3AeUrTpu5Y',
+    	'apiKey': '[SHEET IDENTIFIER REMOVED]',
     	'discoveryDocs': [discoveryUrl],
     	'clientId': '297524436414-0snahu2ge2lg2ujflv05bpumq6b2rbca.apps.googleusercontent.com',
     	'scope': SCOPE
